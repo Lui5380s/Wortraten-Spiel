@@ -1,0 +1,33 @@
+.header {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px; /* Optional: Fügt seitlichen Abstand hinzu */
+}
+
+.gameArea {
+    height: 600px;
+    width: 500px;
+    border: solid black 1px;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 0 8px 6px 6px #555;
+}
+
+.highscore {
+    height: 60px;
+    width: 50px;
+    border: solid rgb(34, 255, 0) 1px;
+    border-radius: 10px;
+    box-shadow: 0 8px 6px 6px #555;
+}
+
+.progressArea {
+    /* Hier kannst du Stile für die progressArea hinzufügen */
+}
