@@ -1,14 +1,26 @@
+body {
+    margin: 0;
+    background-image: url("neeqolah-creative-works-Tn5gnXGI3hI-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .header {
     text-align: center;
-    margin: 0 auto;
+    margin: 10px 0;
+    font-family: 'Honk';
+    font-size: 80px;
+    margin-bottom: -20px;
 }
 
 .container {
+    margin-top: -70px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 0 20px; /* Optional: Fügt seitlichen Abstand hinzu */
+    color: black;
 }
 
 .gameArea {
@@ -16,18 +28,33 @@
     width: 500px;
     border: solid black 1px;
     border-radius: 10px;
-    display: flex;
-    box-shadow: 0 8px 6px 6px #555;
+    margin-left: 50px; 
+    box-shadow: 0 8px 6px 6px #000;
+    background-color: white;
 }
 
-.highscore {
-    height: 60px;
-    width: 50px;
-    border: solid rgb(34, 255, 0) 1px;
+.highScore { 
+    height: 600px;
+    width: 350px;
+    border: solid black 1px;
     border-radius: 10px;
-    box-shadow: 0 8px 6px 6px #555;
+    display: flex;
+    box-shadow: 0 8px 6px 6px #000;
+    background-color: white;
 }
 
 .progressArea {
-    /* Hier kannst du Stile für die progressArea hinzufügen */
+    height: 600px;
+    width: 350px;
+    border: solid rgb(0, 0, 0) 1px; 
+    border-radius: 10px;
+    margin-left: 50px; 
+    box-shadow: 0 8px 6px 6px #000;
+    background-color: white;
+}
+
+h2 {
+    font-family: 'Honk';
+    text-align: center;
+    font-size: 30px;
 }
