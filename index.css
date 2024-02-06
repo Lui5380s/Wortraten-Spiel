@@ -58,6 +58,21 @@ body {
     font-size: 40px;
 }
 
+.input {
+    border: none;
+    width: 450px;
+    height: 50px; 
+    border: solid #070707c6 5px;
+    box-shadow: 0 4px 4px 4px #000;
+    border-radius: 15px;
+    margin-left: 1.2rem;
+    margin-top: 6rem;
+    text-align: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Honk';
+}
+
 /* High Score links */
 .highScore { 
     height: 600px;
