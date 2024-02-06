@@ -90,21 +90,59 @@ body {
 
 /* High Score links */
 .highScore { 
-    justify-content: center; 
     opacity: 0.95;
-    height: 400px;
+    height: 400px; /* Höhe auf automatisch einstellen */
     width: 350px;
     border: solid black 1px;
     border-radius: 10px;
     display: flex;
+    flex-wrap: wrap; /* Elemente werden automatisch auf mehrere Zeilen verteilt */
+    align-items: flex-start; /* Inhalt linksbündig ausrichten */
     box-shadow: 0 8px 6px 6px #000;
     background-color: white;
 }
 
+.headerContainer {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.medContainer{
+    /*background-color: #dbc90b;*/
+    height: 300px;
+    width: 70px;
+}
+
+.textContainer {
+    /*background-color: aquamarine;*/
+    height: 300px;
+    width: 280px;
+}
+    
+
 .Image {
-    border-radius: 10px;
-    border: #000;
+    margin: 5px; /* Optional: Abstand zwischen den Elementen */
     background-color: #fff;
+    width: 69px;
+    height: 69px; /* Höhe des Bilds anpassen */
+    
+}
+
+.name, .score {
+    font-family: "Honk";
+    font-size: 20px;
+    margin: 0; /* Entferne den Standardabstand */
+}
+
+.name {
+    margin-left: 20px; /* Optional: Abstand zwischen Bild und Namen */
+}
+
+.score {
+    margin-left: 20px; /* Optional: Abstand zwischen Namen und Punkten */
 }
 
 .startButton {
