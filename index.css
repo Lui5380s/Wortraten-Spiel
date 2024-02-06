@@ -40,7 +40,7 @@ body {
     border: solid #070707c6 5px;
     box-shadow: 0 4px 4px 4px #000;
     border-radius: 15px;
-    background-color: #268688b7;
+    background-color: #09ccbf;
     margin-left: 1.2rem;
 }
 
@@ -75,6 +75,7 @@ body {
 
 /* High Score links */
 .highScore { 
+    opacity: 0.95;
     height: 600px;
     width: 350px;
     border: solid black 1px;
@@ -84,8 +85,13 @@ body {
     background-color: white;
 }
 
+.startButton {
+    padding: 20px;
+}
+
 /* Progress Area rechts */
 .progressArea {
+    opacity: 0.95;
     height: 600px;
     width: 350px;
     border: solid rgb(0, 0, 0) 1px; 
@@ -116,8 +122,27 @@ body {
     box-shadow: 0 0 10px 3px rgb(255, 80, 80); 
 }
 
+.resetButton {
+    border: solid #070707c6 5px;
+    box-shadow: 0 4px 4px 4px #000;
+    border-radius: 15px;
+    height: 50px;
+    width: 100px;
+    font-family: "Honk";
+    font-size: 25px;
+    margin-top: 5rem;
+    margin-left: 8rem;
+    cursor: pointer;
+}
+
+.resetButton:hover {
+    box-shadow: 0 4px 4px 4px #09ccbf;
+    border: solid #070707c6 5px;
+}
+
+
 h2 {
     font-family: 'Honk';
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
 }
