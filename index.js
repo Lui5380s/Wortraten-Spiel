@@ -20,55 +20,55 @@ function getInput () {
 const Früchte = [
     "Apfel",
     "Banane",
-    "Kirsche",
     "Orange",
-    "Erdbeere",
-    "Blaubeere",
-    "Himbeere",
     "Kiwi",
     "Ananas",
-    "Mango"
+    "Mango",
+    "Pfirsich",
+    "Birne",
+    "Kirsche",
+    "Erdbeere"
 ];
-
 
 const Sport = [
     "Fußball",
-    "Basketball",
-    "Tennis",
     "Karate",
-    "Schwimmen",
     "Golf",
-    "Rugby",
     "Boxen",
-    "Formel 1",
-    "Volleyball"
+    "Rudern",
+    "Jogging",
+    "Tanzen",
+    "Hockey",
+    "Klettern",
+    "Volley"
 ];
 
 const Automarke = [
     "Toyota",
     "BMW",
-    "Mercedes",
-    "Volkswagen",
     "Audi",
-    "Ford",
-    "Ferrari",
     "Honda",
-    "Porsche",
-    "Tesla"
+    "Lexus",
+    "Nissan",
+    "Subaru",
+    "Suzuki",
+    "Dacia",
+    "Mazda"
 ];
 
 const Musikrichtung = [
-    "Pop",
-    "Rock",
-    "Hip-Hop",
     "Klassik",
-    "Jazz",
-    "Elektronik",
     "Reggae",
-    "Metal",
+    "Jazz",
+    "Rock",
+    "Pop",
+    "Folk",
+    "Blues",
     "Indie",
-    "Rap"
+    "Metal",
+    "Techno"
 ];
+
 
 // Funktion, um eine zufällige Liste auszuwählen und ein zufälliges Wort aus dieser Liste zu wählen
 function zufälligesWort() {
@@ -112,11 +112,24 @@ document.getElementById('startButton').addEventListener('click', function () {
         var inputElement = document.createElement("input");
 
         // Attribute zuweisen
-        inputElement.setAttribute("type", "text");
+        inputElement.setAttribute("type", "password"); // Password um die Eingabe von Buchstaben zu verbergen
         inputElement.setAttribute("id", "wordInput" + i); // ID anpassen, um eindeutige IDs zu erhalten
         inputElement.setAttribute("class", "word");
         inputElement.setAttribute("disabled", "true");
         inputElement.value = Wort[i]; // Buchstabe als Wert einfügen
+
+        // Stileigenschaften zuweisen
+        inputElement.style.boxShadow = "0 8px 6px 6px #000";
+        inputElement.style.borderRadius = "5px";
+        inputElement.style.border = "none";
+        inputElement.style.backgroundColor = "white";
+        inputElement.style.height = "40px";
+        inputElement.style.width = "30px";
+        inputElement.style.marginLeft = "0.5rem";
+        inputElement.style.marginRight = "0.5rem";
+        inputElement.style.fontFamily = "'Honk'";
+        inputElement.style.textAlign = "center";
+        inputElement.style.fontSize = "35px";
 
         // Element zur Anzeige hinzufügen
         document.querySelector('.anzeige').appendChild(inputElement);
