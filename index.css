@@ -31,12 +31,23 @@ body {
     margin-top: 0;
 }
 
+.nameField {
+    border: none;
+    height:  40px;
+    font-family: "Honk";
+    font-size: larger;
+}
+
 .popup button {
     margin-top: 10px;
+    width: 100px;
+    height: 40px;
     border: solid black 3px;
     border-radius: 10px;
     cursor: pointer;
+    font-size: larger;
     font-family: "Honk";
+    margin-left: 5rem;
 }
 
 .header {
@@ -161,7 +172,11 @@ body {
     background-color: #fff;
     width: 69px;
     height: 69px; /* Höhe des Bilds anpassen */
-    
+    transition: transform 0.3s ease;
+}
+
+.Image:hover {
+    transform: scale(1.1);
 }
 
 .name, .score {
@@ -191,11 +206,13 @@ body {
     font-size: 40px;
     margin-left: 10rem;
     margin-bottom: -7rem;
+    transition: transform 0.4s ease;
 }
 
 .startButton:hover {
     box-shadow: 0 8px 6px 6px rgb(22, 223, 230);
     cursor: pointer;
+    transform: scale(1.1);
 }
 
 /* Progress Area rechts */
@@ -256,11 +273,13 @@ body {
     margin-top: 3rem;
     margin-left: 8rem;
     cursor: pointer;
+    transition: transform 0.4s ease;
 }
 
 .resetButton:hover {
     box-shadow: 0 4px 4px 4px rgb(255, 80, 80);
     border: solid #070707c6 5px;
+    transform: scale(1.1);
 }
 
 
