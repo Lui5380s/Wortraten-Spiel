@@ -21,7 +21,7 @@
             <h2>Anleitung</h2>
             <p>Willkommen beim "Guess the Word" Spiel! Das Spiel besteht darin, ein geheimes Wort zu erraten, indem du Buchstaben eingibst. Der Spielbereich zeigt das zu erratende Wort an, wobei jedes leere Feld einen Buchstaben repräsentiert. Gib deine Vermutungen in den Eingabebereich ein, aber achte darauf, deine Versuche klug zu nutzen, da jede falsche Vermutung ein Herz kostet. Der Highscore-Bereich zeigt eine Liste der Spieler mit den höchsten Punktzahlen. Gib einfach deinen Namen unten ein, klicke dann auf "Start!", um das Spiel zu beginnen.<b> Viel Spaß beim Raten und viel Glück!</b></p>
             <input type="text" placeholder="Name eingeben..." id="nameField" class="nameField">
-            <button onclick="closeOverlay()">Schließen</button>
+            <button onclick="closeOverlay()" id="closeButton">Schließen</button>
         </div>
     </div>
 
@@ -69,9 +69,9 @@
                 <input type="text" disabled id="wordInput" class="word">
                 <input type="text" disabled id="wordInput" class="word">
             </div>
-            <div class="anzeigeBuchstaben">10</div>
+            <div class="anzeigeNamen"></div>
             <div>
-                <input class="input" placeholder="Enter a column..." />
+                <input class="input" placeholder="Enter a column..." maxlength="1">
             </div>
         </div>
     
