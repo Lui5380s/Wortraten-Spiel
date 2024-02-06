@@ -12,8 +12,43 @@ function closeOverlay() {
 function getInput () {
     document.getElementById("input").addEventListener("input", function(){
         let eingabe = document.getElementById("input").value;
-        console.log(eingabe)
-});
+        console.log(eingabe);
+        if (!istBuchstabeRichtig(eingabe)) {
+            liveLost(); // Wenn der eingegebene Buchstabe falsch ist, ein Herz verkleinern
+        }
+    });
+}
+
+// Funktion um zu überprüfen, ob der eingegebene Buchstabe richtig ist
+function istBuchstabeRichtig(buchstabe) {
+    // Überprüfe, ob der eingegebene Buchstabe im zufällig ausgewählten Wort enthalten ist
+    if (zufälligesWort.includes(buchstabe)) {
+        // Wenn der Buchstabe richtig ist, füge ihn der Anzeige hinzu und kehre true zurück
+        addToDisplay(buchstabe);
+        return true;
+    } else {
+        // Wenn der Buchstabe falsch ist, kehre false zurück
+        liveLost();
+        return false;
+    }
+}
+
+// Funktion zum Hinzufügen des richtigen Buchstabens zur Anzeige
+function addToDisplay(buchstabe) {
+    let anzeige = document.querySelector('.anzeige');
+    let inputElement = document.createElement("input");
+    inputElement.setAttribute("type", "text");
+    inputElement.setAttribute("class", "word");
+    inputElement.setAttribute("value", buchstabe);
+    inputElement.setAttribute("disabled", "true");
+    anzeige.appendChild(inputElement);
+}
+
+
+// Funktion Leben verloren 
+function liveLost () {
+    let Heart = document.getElementById("heart")
+    Heart.style.transform = "scale (0.1)"; // Um 10% verkleinern
 }
 
 // Liste aller Themen und Kategorien 
