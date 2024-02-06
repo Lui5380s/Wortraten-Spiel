@@ -44,6 +44,20 @@ body {
     margin-left: 1.2rem;
 }
 
+.anzeigeBuchstaben {
+    width: 300px;
+    height: 50px; 
+    border: solid #070707c6 5px;
+    box-shadow: 0 4px 4px 4px #000;
+    border-radius: 15px;
+    margin-left: 5.5rem;
+    margin-top: 2rem;
+    font-family: 'Honk';
+    text-align: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
 /* High Score links */
 .highScore { 
     height: 600px;
