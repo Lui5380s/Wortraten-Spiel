@@ -17,24 +17,25 @@ function getInput () {
 }
 
 // Liste aller Themen und Kategorien 
-const Wissenschaft = [
-    "Quantenmechanik",
-    "Astrophysik",
-    "Molekularbiologie",
-    "Neurologie",
-    "Klimaforschung",
-    "Genetik",
-    "Nanotechnologie",
-    "Astronomie",
-    "Psychologie",
-    "Robotik"
+const Früchte = [
+    "Apfel",
+    "Banane",
+    "Kirsche",
+    "Orange",
+    "Erdbeere",
+    "Blaubeere",
+    "Himbeere",
+    "Kiwi",
+    "Ananas",
+    "Mango"
 ];
+
 
 const Sport = [
     "Fußball",
     "Basketball",
     "Tennis",
-    "Leichtathletik",
+    "Karate",
     "Schwimmen",
     "Golf",
     "Rugby",
@@ -46,13 +47,13 @@ const Sport = [
 const Automarke = [
     "Toyota",
     "BMW",
-    "Mercedes-Benz",
+    "Mercedes",
     "Volkswagen",
     "Audi",
     "Ford",
     "Ferrari",
     "Honda",
-    "Hyundai",
+    "Porsche",
     "Tesla"
 ];
 
@@ -62,13 +63,65 @@ const Musikrichtung = [
     "Hip-Hop",
     "Klassik",
     "Jazz",
-    "Elektronische Musik",
+    "Elektronik",
     "Reggae",
     "Metal",
     "Indie",
     "Rap"
 ];
 
+// Funktion, um eine zufällige Liste auszuwählen und ein zufälliges Wort aus dieser Liste zu wählen
+function zufälligesWort() {
+    // Zufällige Liste auswählen
+    const listenIndex = Math.floor(Math.random() * 4);
+    let ausgewählteListe;
+
+    switch (listenIndex) {
+        case 0:
+            ausgewählteListe = Früchte;
+            break;
+        case 1:
+            ausgewählteListe = Sport;
+            break;
+        case 2:
+            ausgewählteListe = Automarke;
+            break;
+        case 3:
+            ausgewählteListe = Musikrichtung;
+            break;
+        default:
+            ausgewählteListe = Automarke; // Falls ein ungültiger Index generiert wird, wähle Wissenschaft als Standard
+            break;
+    }
+
+    // Zufälliges Wort aus der ausgewählten Liste wählen
+    const wortIndex = Math.floor(Math.random() * ausgewählteListe.length);
+    const zufälligesWort = ausgewählteListe[wortIndex];
+    
+    return zufälligesWort;
+}
+
+// Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde 
+document.getElementById('startButton').addEventListener('click', function () {
+    var Wort = zufälligesWort();
+    console.log(Wort);
+
+    // Schleife zum Erstellen der input-Elemente für jeden Buchstaben des zufälligen Wortes
+    for (let i = 0; i < Wort.length; i++) {
+        // Neues input-Element erstellen
+        var inputElement = document.createElement("input");
+
+        // Attribute zuweisen
+        inputElement.setAttribute("type", "text");
+        inputElement.setAttribute("id", "wordInput" + i); // ID anpassen, um eindeutige IDs zu erhalten
+        inputElement.setAttribute("class", "word");
+        inputElement.setAttribute("disabled", "true");
+        inputElement.value = Wort[i]; // Buchstabe als Wert einfügen
+
+        // Element zur Anzeige hinzufügen
+        document.querySelector('.anzeige').appendChild(inputElement);
+    }
+});
 
 
 // Funktionen um den userName zu speichern und
