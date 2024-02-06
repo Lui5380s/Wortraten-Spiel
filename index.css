@@ -23,6 +23,7 @@ body {
     color: black;
 }
 
+/* Game Area in der Mitte */
 .gameArea {
     height: 600px;
     width: 500px;
@@ -33,6 +34,17 @@ body {
     background-color: white;
 }
 
+.anzeige {
+    height: 200px;
+    width: 450px;
+    border: solid #c0c0c0c6 10px;
+    box-shadow: 0 4px 4px 4px #000;
+    border-radius: 15px;
+    background-color: #29ac64b7;
+    margin-left: 1.2rem;
+}
+
+/* High Score links */
 .highScore { 
     height: 600px;
     width: 350px;
@@ -43,6 +55,7 @@ body {
     background-color: white;
 }
 
+/* Progress Area rechts */
 .progressArea {
     height: 600px;
     width: 350px;
