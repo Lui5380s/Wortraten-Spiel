@@ -37,10 +37,10 @@ body {
 .anzeige {
     height: 200px;
     width: 450px;
-    border: solid #c0c0c0c6 10px;
+    border: solid #070707c6 5px;
     box-shadow: 0 4px 4px 4px #000;
     border-radius: 15px;
-    background-color: #29ac64b7;
+    background-color: #268688b7;
     margin-left: 1.2rem;
 }
 
@@ -64,6 +64,27 @@ body {
     margin-left: 50px; 
     box-shadow: 0 8px 6px 6px #000;
     background-color: white;
+}
+
+.heartContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    background-color: white;
+}
+
+.heart {
+    width: 50px; 
+    height: 50px; 
+    margin-top: 15px;
+    background-image: url("gaming\ herzen\ –\ Google\ Suche.png"); 
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    border: none;
+    border-radius: 5px; 
+    box-shadow: 0 0 10px 3px rgb(255, 80, 80); 
 }
 
 h2 {
