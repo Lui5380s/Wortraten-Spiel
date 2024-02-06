@@ -40,7 +40,7 @@ body {
     border: solid #070707c6 5px;
     box-shadow: 0 4px 4px 4px #000;
     border-radius: 15px;
-    background-color: #09ccbf;
+    background-image: linear-gradient(to top, #dbc90b 0%, rgb(223, 22, 230) 60%);
     margin-left: 1.2rem;
 }
 
@@ -75,8 +75,9 @@ body {
 
 /* High Score links */
 .highScore { 
+    justify-content: center; 
     opacity: 0.95;
-    height: 600px;
+    height: 400px;
     width: 350px;
     border: solid black 1px;
     border-radius: 10px;
@@ -86,13 +87,28 @@ body {
 }
 
 .startButton {
-    padding: 20px;
+    border: solid black 3px;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 0 8px 6px 6px #000; 
+    justify-content: center;
+    width: 130px;
+    height: 60px;
+    background-color: white;
+    font-family: "Honk";
+    font-size: 40px;
+    margin-left: 10rem;
+    margin-bottom: -7rem;
+}
+
+.startButton:hover {
+    box-shadow: 0 8px 6px 6px rgb(22, 223, 230);
 }
 
 /* Progress Area rechts */
 .progressArea {
     opacity: 0.95;
-    height: 600px;
+    height: 400px;
     width: 350px;
     border: solid rgb(0, 0, 0) 1px; 
     border-radius: 10px;
@@ -128,13 +144,13 @@ body {
     background-image: url("gaming\ herzen\ –\ Google\ Suche.png"); 
     background-size: contain; 
     background-repeat: no-repeat; 
-    border: none;
+    border: inset #000 2px;
     border-radius: 5px; 
     box-shadow: 0 0 10px 3px rgb(255, 80, 80); 
 }
 
 .resetButton {
-    border: solid #070707c6 5px;
+    border: solid #000000c6 5px;
     box-shadow: 0 4px 4px 4px #000;
     border-radius: 15px;
     height: 50px;
@@ -147,7 +163,7 @@ body {
 }
 
 .resetButton:hover {
-    box-shadow: 0 4px 4px 4px #09ccbf;
+    box-shadow: 0 4px 4px 4px rgb(255, 80, 80);
     border: solid #070707c6 5px;
 }
 
