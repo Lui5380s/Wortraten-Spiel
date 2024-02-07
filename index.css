@@ -6,6 +6,14 @@ body {
     background-repeat: no-repeat;
 }
 
+/* Allgemeines Styling für header2 */
+h2 {
+    font-family: 'Honk';
+    text-align: center;
+    font-size: 35px;
+}
+
+/* Aufpop-Fenster beim Laden der  Website */
 .overlay {
     position: fixed;
     top: 0;
@@ -50,6 +58,7 @@ body {
     margin-left: 5rem;
 }
 
+/* Header Styling und Container für allgemeine Umgebung  */
 .header {
     text-align: center;
     margin: 10px 0;
@@ -135,7 +144,7 @@ body {
 /* High Score links */
 .highScore { 
     opacity: 0.95;
-    height: 400px; /* Höhe auf automatisch einstellen */
+    height: 400px; 
     width: 350px;
     border: solid black 1px;
     border-radius: 10px;
@@ -155,23 +164,23 @@ body {
 }
 
 .medContainer{
-    /*background-color: #dbc90b;*/
+    /*background-color: #dbc90b;  Benutzt um die Container richtig auszurichten*/
     height: 300px;
     width: 70px;
 }
 
 .textContainer {
-    /*background-color: aquamarine;*/
+    /*background-color: aquamarine;  Benutzt um die Container richtig auszurichten */
     height: 300px;
     width: 280px;
 }
     
 
 .Image {
-    margin: 5px; /* Optional: Abstand zwischen den Elementen */
+    margin: 5px; /* Abstand zwischen den Elementen */
     background-color: #fff;
     width: 69px;
-    height: 69px; /* Höhe des Bilds anpassen */
+    height: 69px; 
     transition: transform 0.3s ease;
 }
 
@@ -186,18 +195,19 @@ body {
 }
 
 .name {
-    margin-left: 20px; /* Optional: Abstand zwischen Bild und Namen */
+    margin-left: 20px; /* Abstand zwischen Bild und Namen */
 }
 
 .score {
-    margin-left: 20px; /* Optional: Abstand zwischen Namen und Punkten */
+    margin-left: 20px; /* Abstand zwischen Namen und Punkten */
 }
 
+/* Start Button */
 .startButton {
     border: solid black 5px;
     border-radius: 10px;
     display: flex;
-    box-shadow: 0 6px 6px 6px #000; 
+    box-shadow: 0 4px 8px 6px #000; 
     justify-content: center;
     width: 130px;
     height: 60px;
@@ -210,7 +220,7 @@ body {
 }
 
 .startButton:hover {
-    box-shadow: 0 8px 6px 6px rgb(22, 223, 230);
+    box-shadow: 0 4px 6px 6px rgb(22, 223, 230);
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -280,11 +290,4 @@ body {
     box-shadow: 0 4px 4px 4px rgb(255, 80, 80);
     border: solid #070707c6 5px;
     transform: scale(1.1);
-}
-
-
-h2 {
-    font-family: 'Honk';
-    text-align: center;
-    font-size: 35px;
 }
