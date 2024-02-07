@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wortraten-Spiel</title>
+    <!-- Einbindung aus Google Fonds -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <!-- verlinkung von CSS -->
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
+    <!-- Überschrift der Website -->
     <h1 class="header">Guess the Word</h1>
 
     <button id="startButton" class="startButton">Start!</button>
@@ -25,6 +27,7 @@
         </div>
     </div>
 
+    <!-- Container für die ganze Spiel-Umgebung -->
     <div class="container">
 
         <!-- highScore am linken Rand -->
@@ -33,12 +36,14 @@
                 <h2>High Score</h2>
             </div>
 
+            <!-- Medallien Container -->
             <div class="medContainer"> 
                 <img src="Gold1.png" class="Image">
                 <img src="Silber1.png" class="Image">
                 <img src="Bronze1.png" class="Image">
             </div>
 
+            <!-- Text Container neben den Medallien -->
             <div class="textContainer"> 
                 <p class="name">Name: </p><br>
                 <p class="score">Points: </p><br>
@@ -57,9 +62,11 @@
         <!-- gameArea in der Mitte des OnePagers -->
         <div class="gameArea" id="gameArea">
             <h2>Play</h2>
-            <div class="anzeige">
-            </div>
+            <!-- Display Anzeige für Buchstaben -->
+            <div class="anzeige"></div>
+            <!-- Anzeige für den Spielernamen -->
             <div class="anzeigeNamen"></div>
+            <!-- Input Feld für den User um Buchstaben einzugeben -->
             <div>
                 <input class="input" placeholder="Enter a column..." maxlength="1">
             </div>
@@ -69,6 +76,7 @@
         <div class="progressArea" id="progressArea">
             <h2>Progress</h2>
 
+            <!-- Herz Container mit 10 Herzen -->
             <div class="heartContainer">
                 <div class="heart"></div>
                 <div class="heart"></div>
@@ -84,7 +92,8 @@
                 <div class="heart"></div>
             </div>
 
-            <button class="resetButton">Reset</button>
+            <!-- Reset Buttun um das Spiel neu zu Starten -->
+            <button class="resetButton" id="resetButton">Reset</button>
 
         </div>
     </div>
