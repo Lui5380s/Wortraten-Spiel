@@ -3,6 +3,7 @@ var highScore = 0;
 var Wort = "";
 var resetButtonPressed = false;
 
+document.getElementById('endSequenz').style.display = 'none';
 
 // Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde und input in Disyplay setzen
 document.getElementById('startButton').addEventListener('click', function () {
@@ -53,13 +54,12 @@ document.getElementById("input").addEventListener("input", function(event){
         if (eingabe !== "") {
             if (istBuchstabeRichtig(eingabe, Wort)) {
                 // Ändere die Randfarbe der gameArea auf Grün
-                inputElement.setAttribute("type", "text");
                 gameArea.style.boxShadow = "0 8px 6px 6px green";
             
                 // Warte 2 Sekunden und setze dann die Box-Schatten-Eigenschaft zurück
                 setTimeout(function() {
                     gameArea.style.boxShadow = ""; // Setze die Box-Schatten-Eigenschaft zurück
-                }, 2000);
+                }, 1000);
             }
             else { 
                 gameArea.style.boxShadow = "0 8px 6px 6px red";
@@ -69,7 +69,7 @@ document.getElementById("input").addEventListener("input", function(event){
 
                 setTimeout(function() {
                     gameArea.style.boxShadow = ""; // Setze die Box-Schatten-Eigenschaft zurück
-                }, 2000);
+                }, 1000);
             }
         }
 
@@ -77,6 +77,11 @@ document.getElementById("input").addEventListener("input", function(event){
         setTimeout(function() {
             event.target.value = ""; // Leeren des Input-Feldes
         }, 1000);
+    }
+        // Prüfen, ob alle Leben verloren wurden und die Endsequenz anzeigen
+    else  {
+        // Anzeige der Endsequenz
+        document.getElementById('endSequenz').style.display = 'block';
     }
 });
 

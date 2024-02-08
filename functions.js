@@ -19,31 +19,48 @@ function getInput () {
     });
 }
 
-// Funktion um zu überprüfen, ob der eingegebene Buchstabe richtig ist
-function istBuchstabeRichtig(buchstabe) {
-    // Überprüfe, ob der eingegebene Buchstabe im zufällig ausgewählten Wort enthalten ist
-    if (zufälligesWort.includes(buchstabe)) {
-        // Wenn der Buchstabe richtig ist, füge ihn der Anzeige hinzu und kehre true zurück
-        addToDisplay(buchstabe);
-        return true;
-    } else {
-        // Wenn der Buchstabe falsch ist, kehre false zurück
-        liveLost();
-        return false;
+
+function liveLost() {
+    for (let i = 1; i <= 10; i++) {
+        let heart = document.getElementById("heart" + i);
+        if (heart && !heart.classList.contains('lost')) {
+            heart.style.transition = "transform 1s";
+            heart.style.transform = "scale(0.1)";
+            heart.classList.add('lost'); // Markiere das Herz als verloren
+            break; // Beende die Schleife nach dem Schrumpfen eines Herzens
+        }
     }
 }
 
 
-// Funktion Leben verloren 
-function liveLost () {
-    let Heart = document.getElementById("heart")
-    Heart.style.transform = "scale (0.1)"; 
+function resetButton () {
+    Lives = 10;
+    highScore = 0;
+    
+    // HighScore aktualisieren und in Highscore Container schreiben + namen Anhängen 
+    document.getElementById('highscore-container').innerHTML = `High Score: ${highScore}`;
+
+    Wort = ""; 
+
+    document.querySelector('.overlay').style.display = 'flex';
 }
 
 
 
+function istBuchstabeRichtig(buchstabe, Wort, inputElement) {
+    const kleinerBuchstabe = buchstabe.toLowerCase();
+    const kleinesWort = Wort.toLowerCase();
+    // Überprüfe, ob der eingegebene Buchstabe im Wort enthalten ist
+    for (let i = 0; i < Wort.length; i++) {
+        if (kleinesWort.includes(kleinerBuchstabe)) {
+            inputElement.setAttribute("type", "text");
+            return true // Wenn der Buchstabe richtig ist, gib true zurück
+        }
+    }
+    return false; // Wenn der Buchstabe falsch ist, gib false zurück
+}
 
-// Funktion zu erkennen der richtigen Buchstaben 
+/* Funktion zu erkennen der richtigen Buchstaben 
 function überprüfeBuchstabe(buchstabe, Wort) {
     let container = document.querySelector('.container');
     let richtig = false;
@@ -76,10 +93,10 @@ function überprüfeBuchstabe(buchstabe, Wort) {
         // Ein Leben verloren
         liveLost();
     }
-}
+}*/
 
 
-// Funktion zum Hinzufügen des richtigen Buchstabens zur Anzeige
+/* Funktion zum Hinzufügen des richtigen Buchstabens zur Anzeige
 function addToDisplay(buchstabe) {
     let anzeige = document.querySelector('.anzeige');
     let inputElement = document.createElement("input");
@@ -88,4 +105,4 @@ function addToDisplay(buchstabe) {
     inputElement.setAttribute("value", buchstabe);
     inputElement.setAttribute("disabled", "true");
     anzeige.appendChild(inputElement);
-}
+} */
