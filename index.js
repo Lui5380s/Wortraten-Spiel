@@ -1,136 +1,19 @@
-// FunKtion, um das Overlay beim Laden der Seite automatisch anzuzeigen
-window.onload = function() {
-    document.querySelector('.overlay').style.display = 'flex';
-};
-
-// Funktion, um das Overlay zu schließen
-function closeOverlay() {
-    document.querySelector('.overlay').style.display = 'none';
-}
-
-// Funktion um den input abzufangen 
-function getInput () {
-    document.getElementById("input").addEventListener("input", function(){
-        let eingabe = document.getElementById("input").value;
-        console.log(eingabe);
-        if (!istBuchstabeRichtig(eingabe)) {
-            liveLost(); // Wenn der eingegebene Buchstabe falsch ist, ein Herz verkleinern
-        }
-    });
-}
-
-// Funktion um zu überprüfen, ob der eingegebene Buchstabe richtig ist
-function istBuchstabeRichtig(buchstabe) {
-    // Überprüfe, ob der eingegebene Buchstabe im zufällig ausgewählten Wort enthalten ist
-    if (zufälligesWort.includes(buchstabe)) {
-        // Wenn der Buchstabe richtig ist, füge ihn der Anzeige hinzu und kehre true zurück
-        addToDisplay(buchstabe);
-        return true;
-    } else {
-        // Wenn der Buchstabe falsch ist, kehre false zurück
-        liveLost();
-        return false;
-    }
-}
-
-
-// Funktion Leben verloren 
-function liveLost () {
-    let Heart = document.getElementById("heart")
-    Heart.style.transform = "scale (0.1)"; 
-}
-
-// Funktion, um eine zufällige Liste auszuwählen und ein zufälliges Wort aus dieser Liste zu wählen
-function zufälligesWort() {
-    // Zufällige Liste auswählen
-    const listenIndex = Math.floor(Math.random() * 4);
-    let ausgewählteListe;
-
-    switch (listenIndex) {
-        case 0:
-            ausgewählteListe = Früchte;
-            break;
-        case 1:
-            ausgewählteListe = Sport;
-            break;
-        case 2:
-            ausgewählteListe = Automarke;
-            break;
-        case 3:
-            ausgewählteListe = Musikrichtung;
-            break;
-        default:
-            ausgewählteListe = Automarke; // Falls ein ungültiger Index generiert wird, wähle Wissenschaft als Standard
-            break;
-    }
-
-    // Zufälliges Wort aus der ausgewählten Liste wählen
-    const wortIndex = Math.floor(Math.random() * ausgewählteListe.length);
-    const zufälligesWort = ausgewählteListe[wortIndex];
-    
-    return zufälligesWort;
-}
-
-// Liste aller Themen und Kategorien 
-const Früchte = [
-    "Apfel",
-    "Banane",
-    "Orange",
-    "Kiwi",
-    "Ananas",
-    "Mango",
-    "Pfirsich",
-    "Birne",
-    "Kirsche",
-    "Erdbeere"
-];
-
-const Sport = [
-    "Fußball",
-    "Karate",
-    "Golf",
-    "Boxen",
-    "Rudern",
-    "Jogging",
-    "Tanzen",
-    "Hockey",
-    "Klettern",
-    "Volley"
-];
-
-const Automarke = [
-    "Toyota",
-    "BMW",
-    "Audi",
-    "Honda",
-    "Lexus",
-    "Nissan",
-    "Subaru",
-    "Suzuki",
-    "Dacia",
-    "Mazda"
-];
-
-const Musikrichtung = [
-    "Klassik",
-    "Reggae",
-    "Jazz",
-    "Rock",
-    "Pop",
-    "Folk",
-    "Blues",
-    "Indie",
-    "Metal",
-    "Techno"
-];
-
-
+var Lives = 10;
+var highScore = 0;
+var Wort = "";
+var resetButtonPressed = false;
 
 
 // Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde und input in Disyplay setzen
 document.getElementById('startButton').addEventListener('click', function () {
     var Wort = zufälligesWort();
     console.log(Wort);
+    
+    Lives = 10; 
+    highScore = 0;
+
+    console.log("Leben: " + Lives)
+    console.log("HighScore: " + highScore)
 
     // Schleife zum Erstellen der input-Elemente für jeden Buchstaben des zufälligen Wortes
     for (let i = 0; i < Wort.length; i++) {
@@ -162,56 +45,46 @@ document.getElementById('startButton').addEventListener('click', function () {
     }
 });
 
-// Funktion zu erkennen der richtigen Buchstaben 
-function überprüfeBuchstabe(buchstabe, Wort) {
-    let container = document.querySelector('.container');
-    let richtig = false;
+document.getElementById("input").addEventListener("input", function(event){
+    if (Lives !== 0 && !resetButtonPressed) {
+        // Speichern des aktuellen Werts des Inputs
+        let eingabe = this.value;
 
-    // Überprüfe, ob der eingegebene Buchstabe im Wort enthalten ist
-    for (let i = 0; i < Wort.length; i++) {
-        if (Wort[i].toLowerCase() === buchstabe.toLowerCase()) {
-            richtig = true;
-            break;
+        if (eingabe !== "") {
+            if (istBuchstabeRichtig(eingabe, Wort)) {
+                // Ändere die Randfarbe der gameArea auf Grün
+                inputElement.setAttribute("type", "text");
+                gameArea.style.boxShadow = "0 8px 6px 6px green";
+            
+                // Warte 2 Sekunden und setze dann die Box-Schatten-Eigenschaft zurück
+                setTimeout(function() {
+                    gameArea.style.boxShadow = ""; // Setze die Box-Schatten-Eigenschaft zurück
+                }, 2000);
+            }
+            else { 
+                gameArea.style.boxShadow = "0 8px 6px 6px red";
+                liveLost(event);
+                Lives = Lives - 1;
+                console.log(Lives);
+
+                setTimeout(function() {
+                    gameArea.style.boxShadow = ""; // Setze die Box-Schatten-Eigenschaft zurück
+                }, 2000);
+            }
         }
+
+        // Input-Feld leeren nach 1 Sekunde
+        setTimeout(function() {
+            event.target.value = ""; // Leeren des Input-Feldes
+        }, 1000);
     }
-
-    if (richtig) {
-        // Setze den Typ des korrekten Buchstabens auf 'text'
-        let inputElement = document.querySelector('.anzeige input[value="' + buchstabe.toLowerCase() + '"]');
-        inputElement.setAttribute('type', 'text');
-
-        // Ändere die Randfarbe der Container auf Grün
-        container.style.borderColor = 'green';
-
-        // Sound abspielen
-        // playSound('correct.mp3');
-    } else {
-        // Ändere die Randfarbe der Container auf Rot
-        container.style.borderColor = 'red';
-
-        // Sound abspielen
-        // playSound('incorrect.mp3');
-
-        // Ein Leben verloren
-        liveLost();
-    }
-}
+});
 
 
-// Funktion zum Hinzufügen des richtigen Buchstabens zur Anzeige
-function addToDisplay(buchstabe) {
-    let anzeige = document.querySelector('.anzeige');
-    let inputElement = document.createElement("input");
-    inputElement.setAttribute("type", "text");
-    inputElement.setAttribute("class", "word");
-    inputElement.setAttribute("value", buchstabe);
-    inputElement.setAttribute("disabled", "true");
-    anzeige.appendChild(inputElement);
-}
-
-
-
-
+// Reset Button == alles zurücksetzten 
+document.getElementById("resetButton").addEventListener("click", function(event){
+    resetButton(event);
+})
 
 
 // Aufrufen des userName um Ihn zu speichern und in den Texthalter zu setzen 
