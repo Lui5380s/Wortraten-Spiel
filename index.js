@@ -82,14 +82,15 @@ document.getElementById("input").addEventListener("input", function(event){
     else  {
         // Anzeige der Endsequenz
         document.getElementById('endSequenz').style.display = 'block';
+        resetGame1()
     }
 });
 
 
 // Reset Button == alles zurücksetzten 
 document.getElementById("resetButton").addEventListener("click", function(event){
-    resetButton(event);
-})
+    resetGame(); // Setzt das Spiel zurück
+});
 
 
 // Aufrufen des userName um Ihn zu speichern und in den Texthalter zu setzen 

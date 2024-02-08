@@ -6,6 +6,7 @@ window.onload = function() {
 // Funktion, um das Overlay zu schließen
 function closeOverlay() {
     document.querySelector('.overlay').style.display = 'none';
+    document.querySelector('.endSequenz').style.display = 'none';
 }
 
 // Funktion um den input abzufangen 
@@ -19,7 +20,7 @@ function getInput () {
     });
 }
 
-
+// Funnktion wenn Leben veloren ist 
 function liveLost() {
     for (let i = 1; i <= 10; i++) {
         let heart = document.getElementById("heart" + i);
@@ -32,18 +33,53 @@ function liveLost() {
     }
 }
 
+// Herzen wieder auffüllen
+function refillHearts() {
+    for (let i = 1; i <= 10; i++) {
+        let heart = document.getElementById("heart" + i);
+        if (heart && heart.classList.contains('lost')) {
+            heart.style.transition = "transform 1s";
+            heart.style.transform = "scale(1)"; // Zurücksetzen auf normale Größe
+            heart.classList.remove('lost'); // Entferne die Markierung als verloren
+        }
+    }
+}
 
-function resetButton () {
+// Funktion um game zu reseten
+function resetGame() {
     Lives = 10;
     highScore = 0;
-    
+
     // HighScore aktualisieren und in Highscore Container schreiben + namen Anhängen 
-    document.getElementById('highscore-container').innerHTML = `High Score: ${highScore}`;
 
-    Wort = ""; 
-
+    clearDisplay(); // Leert das Display
+    refillHearts(); // Füllt alle Herzen wieder auf
     document.querySelector('.overlay').style.display = 'flex';
 }
+
+// Funktion um game zu beenden
+function resetGame1() {
+    Lives = 10;
+    highScore = 0;
+
+    // HighScore aktualisieren und in Highscore Container schreiben + namen Anhängen 
+
+    clearDisplay(); // Leert das Display
+    refillHearts(); // Füllt alle Herzen wieder auf
+}
+
+
+// Clear Display 
+function clearDisplay() {
+    var display = document.querySelector('.anzeige');
+    var inputField = document.getElementById('input');
+    var nameDisplay = document.querySelector('.anzeigeNamen');
+
+    display.innerHTML = ''; // Leert den HTML-Inhalt des Anzeigebereichs
+    inputField.value = ''; // Leert den Inhalt des Input-Feldes
+    nameDisplay.innerHTML = ''; // Leert den Inhalt des Namensfeldes
+} 
+
 
 
 
