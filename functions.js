@@ -92,37 +92,8 @@ function istBuchstabeRichtig(buchstabe, Wort) {
     return false;
 }
 
-// Wort ist komplett richtig 
-function wortIstRichtig(Wort) {
-    let allLettersAreText = true; // Variable, um den Buchstabentyp zu verfolgen
-
-    // Durchlaufe jeden Buchstaben des Wortes
-    for (let i = 0; i < Wort.length; i++) {
-        // Aktueller Buchstabe
-        let buchstabe = Wort[i];
         
-        // Überprüfe, ob der aktuelle Buchstabe kein Text ist
-        if (typeof buchstabe !== 'string') {
-            allLettersAreText = false; // Setze die Variable auf false, wenn ein Buchstabe nicht vom Typ "text" ist
-            break; // Beende die Schleife, da ein Buchstabe nicht vom Typ "text" ist
-        }
-    }
-
-    // Wenn alle Buchstaben vom Typ "text" sind, erhöhe den Highscore und aktualisiere das Display
-    if (allLettersAreText) {
-        highScore++; // Erhöhe den Highscore
-        console.log("HighScore ist: " + highScore);
-        var display = document.querySelector('.anzeige');
-        display.innerHTML = ''; // Leert den HTML-Inhalt des Anzeigebereichs
-        zufälligesWort();
-        appendWortToScreen(Wort);
-        return true; // Gib true zurück, wenn alle Buchstaben vom Typ "text" sind
-    } else {
-        return false; // Gib false zurück, wenn mindestens ein Buchstabe nicht vom Typ "text" ist
-    }
-}
-
-
+// Fügt das Wort in einen HTML-Container ein
 function appendWortToScreen(Wort) {
   // Schleife zum Erstellen der input-Elemente für jeden Buchstaben des zufälligen Wortes
     for (let i = 0; i < Wort.length; i++) {
