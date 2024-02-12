@@ -7,7 +7,7 @@ document.getElementById('endSequenz').style.display = 'none';
 
 // Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde und input in Disyplay setzen
 document.getElementById('startButton').addEventListener('click', function () {
-    var Wort = zufälligesWort();
+    Wort = zufälligesWort();
     console.log(Wort);
     
     Lives = 10; 
@@ -19,7 +19,7 @@ document.getElementById('startButton').addEventListener('click', function () {
     // Schleife zum Erstellen der input-Elemente für jeden Buchstaben des zufälligen Wortes
     for (let i = 0; i < Wort.length; i++) {
         // Neues input-Element erstellen
-        var inputElement = document.createElement("input");
+        let inputElement = document.createElement("input");
 
         // Attribute zuweisen
         inputElement.setAttribute("type", "password"); // Password um die Eingabe von Buchstaben zu verbergen
@@ -46,26 +46,33 @@ document.getElementById('startButton').addEventListener('click', function () {
     }
 });
 
+
 document.getElementById("input").addEventListener("input", function(event){
     if (Lives !== 0 && !resetButtonPressed) {
-        // Speichern des aktuellen Werts des Inputs
-        let eingabe = this.value;
+        let eingabe = document.getElementById("input").value.toLowerCase();
 
         if (eingabe !== "") {
-            if (istBuchstabeRichtig(eingabe, Wort)) {
+            if (istBuchstabeRichtig(eingabe, Wort)) { 
                 // Ändere die Randfarbe der gameArea auf Grün
                 gameArea.style.boxShadow = "0 8px 6px 6px green";
-            
+                
+                // Durchlaufe das Wort und ändere den Typ jedes passenden Buchstabens auf "text"
+                for (let i = 0; i < Wort.length; i++) {
+                    if (Wort[i].toLowerCase() === eingabe.toLowerCase()) {
+                        document.getElementById("wordInput" + i).setAttribute("type", "text");
+                    }
+                } 
+                
                 // Warte 2 Sekunden und setze dann die Box-Schatten-Eigenschaft zurück
                 setTimeout(function() {
                     gameArea.style.boxShadow = ""; // Setze die Box-Schatten-Eigenschaft zurück
                 }, 1000);
-            }
-            else { 
+
+            } else { 
                 gameArea.style.boxShadow = "0 8px 6px 6px red";
                 liveLost(event);
-                Lives = Lives - 1;
-                console.log(Lives);
+                Lives--;
+                console.log("Verbleibende Leben:", Lives);
 
                 setTimeout(function() {
                     gameArea.style.boxShadow = ""; // Setze die Box-Schatten-Eigenschaft zurück
@@ -77,14 +84,15 @@ document.getElementById("input").addEventListener("input", function(event){
         setTimeout(function() {
             event.target.value = ""; // Leeren des Input-Feldes
         }, 1000);
-    }
-        // Prüfen, ob alle Leben verloren wurden und die Endsequenz anzeigen
-    else  {
+        
+    } else {
         // Anzeige der Endsequenz
         document.getElementById('endSequenz').style.display = 'block';
-        resetGame1()
+        addToHighScore(firstName, highScore);
+        resetGame1();
     }
 });
+
 
 
 // Reset Button == alles zurücksetzten 
