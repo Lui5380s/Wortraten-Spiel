@@ -4,10 +4,30 @@ var Wort = "";
 var resetButtonPressed = false;
 var wortIstRichtig = false;
 var eingabe = "";
-var firstName = "";
-
+var firstName = ""; // Variable zur Speicherung des Namens
 
 document.getElementById('endSequenz').style.display = 'none';
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var nameField = document.getElementById('nameField');
+    var closeButton = document.getElementById('closeButton');
+    var anzeigeBuchstaben = document.querySelector('.anzeigeNamen');
+
+    // Schleife zur Überwachung des "nameField"
+    nameField.addEventListener("input", function (event) {
+        let name = nameField.value.trim(); // Eingegebenen Namen abrufen und führende/trailing Leerzeichen entfernen
+        if (name !== "") {        
+            // Hänge eine eindeutige ID an den Namen an
+            let nameWithID = `${name}_${generateUniqueID()}`;
+
+            // Aktualisiere die Anzeige im ".anzeigeNamen" Element
+            anzeigeBuchstaben.textContent = name;
+            document.getElementById('name1').textContent = `Name: ${name}`;
+            console.log(`${nameWithID}`)
+        }
+    });
+});
 
 
 // Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde und input in Disyplay setzen
@@ -20,12 +40,7 @@ document.getElementById('startButton').addEventListener('click', function () {
 
     console.log("Leben: " + Lives)
     console.log("HighScore: " + highScore)
-
-    // HighScore aktualisieren und in Highscore Container schreiben + namen Anhängen 
-    document.getElementById('name1').innerHTML = `Name: ${firstName}`;
-    updateHighScoreDisplay(highScore); // Aktualisiert den Highscore im HTML
-
-
+    
     // Schleife zum Erstellen der input-Elemente für jeden Buchstaben des zufälligen Wortes
     for (let i = 0; i < Wort.length; i++) {
         // Neues input-Element erstellen
@@ -53,7 +68,7 @@ document.getElementById('startButton').addEventListener('click', function () {
 
         // Element zur Anzeige hinzufügen
         document.querySelector('.anzeige').appendChild(inputElement);
-    }
+    } 
 });
 
 
@@ -89,6 +104,10 @@ document.getElementById("input").addEventListener("input", function(event){
                     Wort = zufälligesWort();
                     console.log (Wort)
                     appendWortToScreen(Wort);
+                    var inputField = document.getElementById('input');
+                    inputField.value = ''; // Leert den Inhalt des Input-Feldes
+                    // Nachdem das Wort erraten wurde, rufe die updateHighScoreDisplay-Funktion auf
+                    updateHighScoreDisplay(highScore);
                 }
                 
                 // Warte 2 Sekunden und setze dann die Box-Schatten-Eigenschaft zurück
@@ -121,14 +140,16 @@ document.getElementById("input").addEventListener("input", function(event){
     }
 });
 
-
-// Reset Button == alles zurücksetzten 
+// Reset Button == alles zurücksetzen 
 document.getElementById("resetButton").addEventListener("click", function(event){
-    resetGame(); // Setzt das Spiel zurück
+    var nameField = document.getElementById("nameField");
+    nameField.value = ""; // Leere das Input-Feld
+    resetGame(); // Setze das Spiel zurück
 });
 
 
-// Namenserstellung
+
+/* Namenserstellung
 document.addEventListener("DOMContentLoaded", function() {
     var nameField = document.getElementById('nameField');
     var closeButton = document.getElementById('closeButton');
@@ -149,4 +170,4 @@ document.addEventListener("DOMContentLoaded", function() {
             anzeigeBuchstaben.textContent = firstName; // Aktualisiere den Textinhalt der anzeigeBuchstaben Div
         } 
     });
-})    
+}) */   

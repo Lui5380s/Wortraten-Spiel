@@ -137,7 +137,40 @@ function saveHighScore(score) {
     localStorage.setItem('highScore', score);
 }
 
+function updateHighScoreDisplay(scores, currentName) {
+    // Überprüfen, ob scores ein Array ist, andernfalls ein leeres Array initialisieren
+    if (!Array.isArray(scores)) {
+        scores = [];
+    }
+    
+    // Sortiere die Highscores nach absteigenden Punktzahlen
+    scores.sort((a, b) => b.score - a.score);
 
-function updateHighScoreDisplay(score) {
-    document.getElementById("score1").innerHTML = `High Score: ${score}`;
+    // Selektiere alle Highscore-Elemente im HTML
+    const highscoreElements = document.querySelectorAll('.textContainer .score');
+
+    // Prüfe, ob der Name bereits in den Highscores vorhanden ist
+    let nameIndex = scores.findIndex(entry => entry.name === currentName);
+
+    if (nameIndex !== -1) {
+        // Wenn der Name bereits vorhanden ist, aktualisiere den entsprechenden Eintrag
+        scores[nameIndex].score++; // Hier kann die Punktzahl aktualisiert werden
+    } else {
+        // Wenn der Name nicht vorhanden ist, füge einen neuen Eintrag hinzu
+        scores.push({ name: currentName, score: 1 }); // Hier wird die Punktzahl auf 1 gesetzt, da es sich um einen neuen Eintrag handelt
+    }
+
+    // Iteriere über die sortierten Highscores und aktualisiere die Anzeige im HTML
+    scores.forEach((entry, index) => {
+        if (index < highscoreElements.length) {
+            const highscoreElement = highscoreElements[index];
+            highscoreElement.textContent = `High Score: ${entry.score}`;
+            highscoreElement.previousElementSibling.textContent = `Name: ${entry.name}`;
+        }
+    });
+}
+
+// Funktion zur Generierung einer eindeutigen ID
+function generateUniqueID() {
+    return Math.random().toString(36).substr(2, 9); // Beispiel: "0n4g5t0y8"
 }
