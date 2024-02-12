@@ -4,7 +4,7 @@ var Wort = "";
 var resetButtonPressed = false;
 var wortIstRichtig = false;
 var eingabe = "";
-
+var firstName = "";
 
 
 document.getElementById('endSequenz').style.display = 'none';
@@ -20,6 +20,11 @@ document.getElementById('startButton').addEventListener('click', function () {
 
     console.log("Leben: " + Lives)
     console.log("HighScore: " + highScore)
+
+    // HighScore aktualisieren und in Highscore Container schreiben + namen Anhängen 
+    document.getElementById('name1').innerHTML = `Name: ${firstName}`;
+    updateHighScoreDisplay(highScore); // Aktualisiert den Highscore im HTML
+
 
     // Schleife zum Erstellen der input-Elemente für jeden Buchstaben des zufälligen Wortes
     for (let i = 0; i < Wort.length; i++) {
@@ -78,6 +83,7 @@ document.getElementById("input").addEventListener("input", function(event){
                     console.log("Wort wurde erraten");
                     highScore++; // Erhöhe den Highscore, wenn das Wort richtig geraten wurde
                     console.log("HighScore ist: " + highScore);
+                    document.getElementById("score1").innerHTML = `High Score: ${highScore}`;
                     var display = document.querySelector('.anzeige');
                     display.innerHTML = ''; // Leert den HTML-Inhalt des Anzeigebereichs
                     Wort = zufälligesWort();
@@ -109,14 +115,11 @@ document.getElementById("input").addEventListener("input", function(event){
         }, 1000);
         
     } else {
-        // Anzeige der Endsequenz
         document.getElementById('endSequenz').style.display = 'block';
-        addToHighScore(firstName, highScore);
+        //updateHighScore(highScore); // Aktualisiere den Highscore
         resetGame1();
     }
 });
-
-
 
 
 // Reset Button == alles zurücksetzten 
@@ -125,12 +128,13 @@ document.getElementById("resetButton").addEventListener("click", function(event)
 });
 
 
-// Aufrufen des userName um Ihn zu speichern und in den Texthalter zu setzen 
+// Namenserstellung
 document.addEventListener("DOMContentLoaded", function() {
     var nameField = document.getElementById('nameField');
     var closeButton = document.getElementById('closeButton');
     var anzeigeBuchstaben = document.querySelector('.anzeigeNamen');
     var name = ""; // Variable zur Speicherung des Namens initialisieren
+    var nameCount = 1; // Zählvariable für die eindeutige ID
 
     nameField.addEventListener("input", function (event) {
         name = nameField.value; // Aktualisiere den Wert des Namens bei jeder Eingabe
@@ -139,10 +143,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     closeButton.addEventListener("click", function (event) {
         if (name !== "") {
-            var firstName = name;
+            firstName = name + "_" + nameCount; // Hinzufügen der Zählvariable zur ID
+            nameCount++; // Inkrementieren der Zählvariable für die nächste ID
             console.log(firstName);
             anzeigeBuchstaben.textContent = firstName; // Aktualisiere den Textinhalt der anzeigeBuchstaben Div
-        }
+        } 
     });
-});
-
+})    
