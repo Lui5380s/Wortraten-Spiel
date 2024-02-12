@@ -27,6 +27,19 @@ h2 {
     align-items: center;
 }
 
+.endSequenz  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Halbtransparentes Schwarz */
+    z-index: 9000; /* Hohe Z-Index-Wert, um das Overlay über allem zu positionieren */       
+    display: none; /* Anfangs ausgeblendet */
+    justify-content: center;
+    align-items: center;
+}
+
 .popup {
     background-color: white;
     width: 700px;
