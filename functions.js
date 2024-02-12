@@ -9,16 +9,6 @@ function closeOverlay() {
     document.querySelector('.endSequenz').style.display = 'none';
 }
 
-// Funktion um den input abzufangen 
-function getInput () {
-    document.getElementById("input").addEventListener("input", function(){
-        let eingabe = document.getElementById("input").value;
-        console.log(eingabe);
-        if (!istBuchstabeRichtig(eingabe)) {
-            liveLost(); // Wenn der eingegebene Buchstabe falsch ist, ein Herz verkleinern
-        }
-    });
-}
 
 // Funnktion wenn Leben veloren ist 
 function liveLost() {
@@ -63,6 +53,13 @@ function resetGame1() {
     highScore = 0;
 
     // HighScore aktualisieren und in Highscore Container schreiben + namen Anhängen 
+    document.getElementById('name1').innerHTML = `High Score: ${highScore}`;
+    
+    // Name ändern und an das Element mit der ID 'name1' anhängen
+    var name1Element = document.getElementById('name1');
+    var newName = 'Neuer Name'; // Setze den neuen Namen hier ein
+    name1Element.textContent = 'Name: ' + newName;
+
 
     clearDisplay(); // Leert das Display
     refillHearts(); // Füllt alle Herzen wieder auf
@@ -81,64 +78,87 @@ function clearDisplay() {
 } 
 
 
-
-
-function istBuchstabeRichtig(buchstabe, Wort, inputElement) {
-    const kleinerBuchstabe = buchstabe.toLowerCase();
-    const kleinesWort = Wort.toLowerCase();
+// Funktion um zu überprüfen, ob der eingegebene Buchstabe im Wort enthalten ist
+function istBuchstabeRichtig(buchstabe, Wort) {
+    
     // Überprüfe, ob der eingegebene Buchstabe im Wort enthalten ist
     for (let i = 0; i < Wort.length; i++) {
-        if (kleinesWort.includes(kleinerBuchstabe)) {
-            inputElement.setAttribute("type", "text");
-            return true // Wenn der Buchstabe richtig ist, gib true zurück
+        if (Wort[i] === buchstabe) {
+            console.log('Buchstabe gefunden:', buchstabe);
+            return true;
         }
     }
-    return false; // Wenn der Buchstabe falsch ist, gib false zurück
+    console.log('Buchstabe nicht gefunden:', buchstabe);
+    return false;
 }
 
-/* Funktion zu erkennen der richtigen Buchstaben 
-function überprüfeBuchstabe(buchstabe, Wort) {
-    let container = document.querySelector('.container');
-    let richtig = false;
+// Wort ist komplett richtig 
+function wortIstRichtig(Wort) {
+    let allLettersAreText = true; // Variable, um den Buchstabentyp zu verfolgen
 
-    // Überprüfe, ob der eingegebene Buchstabe im Wort enthalten ist
+    // Durchlaufe jeden Buchstaben des Wortes
     for (let i = 0; i < Wort.length; i++) {
-        if (Wort[i].toLowerCase() === buchstabe.toLowerCase()) {
-            richtig = true;
-            break;
+        // Aktueller Buchstabe
+        let buchstabe = Wort[i];
+        
+        // Überprüfe, ob der aktuelle Buchstabe kein Text ist
+        if (typeof buchstabe !== 'string') {
+            allLettersAreText = false; // Setze die Variable auf false, wenn ein Buchstabe nicht vom Typ "text" ist
+            break; // Beende die Schleife, da ein Buchstabe nicht vom Typ "text" ist
         }
     }
 
-    if (richtig) {
-        // Setze den Typ des korrekten Buchstabens auf 'text'
-        let inputElement = document.querySelector('.anzeige input[value="' + buchstabe.toLowerCase() + '"]');
-        inputElement.setAttribute('type', 'text');
-
-        // Ändere die Randfarbe der Container auf Grün
-        container.style.borderColor = 'green';
-
-        // Sound abspielen
-        // playSound('correct.mp3');
+    // Wenn alle Buchstaben vom Typ "text" sind, erhöhe den Highscore und aktualisiere das Display
+    if (allLettersAreText) {
+        highScore++; // Erhöhe den Highscore
+        console.log("HighScore ist: " + highScore);
+        var display = document.querySelector('.anzeige');
+        display.innerHTML = ''; // Leert den HTML-Inhalt des Anzeigebereichs
+        zufälligesWort();
+        appendWortToScreen(Wort);
+        return true; // Gib true zurück, wenn alle Buchstaben vom Typ "text" sind
     } else {
-        // Ändere die Randfarbe der Container auf Rot
-        container.style.borderColor = 'red';
-
-        // Sound abspielen
-        // playSound('incorrect.mp3');
-
-        // Ein Leben verloren
-        liveLost();
+        return false; // Gib false zurück, wenn mindestens ein Buchstabe nicht vom Typ "text" ist
     }
-}*/
+}
 
 
-/* Funktion zum Hinzufügen des richtigen Buchstabens zur Anzeige
-function addToDisplay(buchstabe) {
-    let anzeige = document.querySelector('.anzeige');
-    let inputElement = document.createElement("input");
-    inputElement.setAttribute("type", "text");
-    inputElement.setAttribute("class", "word");
-    inputElement.setAttribute("value", buchstabe);
-    inputElement.setAttribute("disabled", "true");
-    anzeige.appendChild(inputElement);
-} */
+function appendWortToScreen(Wort) {
+  // Schleife zum Erstellen der input-Elemente für jeden Buchstaben des zufälligen Wortes
+    for (let i = 0; i < Wort.length; i++) {
+        // Neues input-Element erstellen
+        var inputElement = document.createElement("input");
+
+        // Attribute zuweisen
+        inputElement.setAttribute("type", "password"); // Password um die Eingabe von Buchstaben zu verbergen
+        inputElement.setAttribute("id", "wordInput" + i); // ID anpassen, um eindeutige IDs zu erhalten
+        inputElement.setAttribute("class", "word");
+        inputElement.setAttribute("disabled", "true");
+        inputElement.value = Wort[i]; // Buchstabe als Wert einfügen
+
+        // Stileigenschaften zuweisen
+        inputElement.style.boxShadow = "0 8px 6px 6px #000";
+        inputElement.style.borderRadius = "5px";
+        inputElement.style.border = "none";
+        inputElement.style.backgroundColor = "white";
+        inputElement.style.height = "40px";
+        inputElement.style.width = "30px";
+        inputElement.style.marginLeft = "0.5rem";
+        inputElement.style.marginRight = "0.5rem";
+        inputElement.style.fontFamily = "'Honk'";
+        inputElement.style.textAlign = "center";
+        inputElement.style.fontSize = "35px";
+
+        // Element zur Anzeige hinzufügen
+        document.querySelector('.anzeige').appendChild(inputElement);
+    }
+}
+
+
+function addToHighScore (firstName, highScore) {
+
+    firstName.style.fontFamily = 'Honk';
+
+    document.querySelector(".name1").appendChild(firstName)
+    document.querySelector(".score1").appendChild(highScore)
+}   
