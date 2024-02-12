@@ -2,8 +2,13 @@ var Lives = 10;
 var highScore = 0;
 var Wort = "";
 var resetButtonPressed = false;
+var wortIstRichtig = false;
+var eingabe = "";
+
+
 
 document.getElementById('endSequenz').style.display = 'none';
+
 
 // Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde und input in Disyplay setzen
 document.getElementById('startButton').addEventListener('click', function () {
@@ -49,7 +54,7 @@ document.getElementById('startButton').addEventListener('click', function () {
 
 document.getElementById("input").addEventListener("input", function(event){
     if (Lives !== 0 && !resetButtonPressed) {
-        let eingabe = document.getElementById("input").value.toLowerCase();
+        eingabe = document.getElementById("input").value.toLowerCase();
 
         if (eingabe !== "") {
             if (istBuchstabeRichtig(eingabe, Wort)) { 
@@ -57,11 +62,28 @@ document.getElementById("input").addEventListener("input", function(event){
                 gameArea.style.boxShadow = "0 8px 6px 6px green";
                 
                 // Durchlaufe das Wort und ändere den Typ jedes passenden Buchstabens auf "text"
+                let allInputsText = true; // Initialisiere die Variable
                 for (let i = 0; i < Wort.length; i++) {
                     if (Wort[i].toLowerCase() === eingabe.toLowerCase()) {
                         document.getElementById("wordInput" + i).setAttribute("type", "text");
                     }
-                } 
+                    // Überprüfen, ob alle Inputs bereits vom Typ "text" sind
+                    if (document.getElementById("wordInput" + i).getAttribute("type") !== "text") {
+                        allInputsText = false;
+                    }
+                }
+
+                // Wenn alle Inputs vom Typ "text" sind, wurde das Wort vollständig erraten
+                if (allInputsText) {
+                    console.log("Wort wurde erraten");
+                    highScore++; // Erhöhe den Highscore, wenn das Wort richtig geraten wurde
+                    console.log("HighScore ist: " + highScore);
+                    var display = document.querySelector('.anzeige');
+                    display.innerHTML = ''; // Leert den HTML-Inhalt des Anzeigebereichs
+                    Wort = zufälligesWort();
+                    console.log (Wort)
+                    appendWortToScreen(Wort);
+                }
                 
                 // Warte 2 Sekunden und setze dann die Box-Schatten-Eigenschaft zurück
                 setTimeout(function() {
@@ -79,6 +101,7 @@ document.getElementById("input").addEventListener("input", function(event){
                 }, 1000);
             }
         }
+        
 
         // Input-Feld leeren nach 1 Sekunde
         setTimeout(function() {
@@ -92,6 +115,7 @@ document.getElementById("input").addEventListener("input", function(event){
         resetGame1();
     }
 });
+
 
 
 
