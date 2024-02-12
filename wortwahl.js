@@ -25,7 +25,7 @@ function zufälligesWort() {
 
     // Zufälliges Wort aus der ausgewählten Liste wählen
     const wortIndex = Math.floor(Math.random() * ausgewählteListe.length);
-    const zufälligesWort = ausgewählteListe[wortIndex];
+    const zufälligesWort = ausgewählteListe[wortIndex].toLowerCase();
     
     return zufälligesWort;
 }
