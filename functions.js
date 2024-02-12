@@ -1,12 +1,18 @@
+
 // FunKtion, um das Overlay beim Laden der Seite automatisch anzuzeigen
 window.onload = function() {
     document.querySelector('.overlay').style.display = 'flex';
 };
 
-// Funktion, um das Overlay zu schließen
+// Funktion, um das Overlay zu schließen, wenn ein Name eingegeben wurde
 function closeOverlay() {
-    document.querySelector('.overlay').style.display = 'none';
-    document.querySelector('.endSequenz').style.display = 'none';
+    var name = document.getElementById('nameField').value;
+    if (name !== "") {
+        document.querySelector('.overlay').style.display = 'none';
+        document.querySelector('.endSequenz').style.display = 'none';
+    } else {
+        alert("Bitte geben Sie einen Namen ein.");
+    }
 }
 
 
@@ -40,24 +46,20 @@ function resetGame() {
     Lives = 10;
     highScore = 0;
 
-    // HighScore aktualisieren und in Highscore Container schreiben + namen Anhängen 
-
     clearDisplay(); // Leert das Display
     refillHearts(); // Füllt alle Herzen wieder auf
     document.querySelector('.overlay').style.display = 'flex';
+
 }
 
 // Funktion um game zu beenden
 function resetGame1() {
     Lives = 10;
     highScore = 0;
-
-    // HighScore aktualisieren und in Highscore Container schreiben + namen Anhängen 
-    document.getElementById('name1').innerHTML = `High Score: ${highScore}`;
     
     // Name ändern und an das Element mit der ID 'name1' anhängen
-    var name1Element = document.getElementById('name1');
-    var newName = 'Neuer Name'; // Setze den neuen Namen hier ein
+    let name1Element = document.getElementById('name1');
+    let newName = firstName; // Setze den neuen Namen hier ein
     name1Element.textContent = 'Name: ' + newName;
 
 
@@ -125,11 +127,17 @@ function appendWortToScreen(Wort) {
     }
 }
 
+// Laden des Highscores aus dem Local Storage
+function loadHighScore() {
+    return parseInt(localStorage.getItem('highScore')) || 0;
+}
 
-function addToHighScore (firstName, highScore) {
+// Speichern des Highscores im Local Storage
+function saveHighScore(score) {
+    localStorage.setItem('highScore', score);
+}
 
-    firstName.style.fontFamily = 'Honk';
 
-    document.querySelector(".name1").appendChild(firstName)
-    document.querySelector(".score1").appendChild(highScore)
-}   
+function updateHighScoreDisplay(score) {
+    document.getElementById("score1").innerHTML = `High Score: ${score}`;
+}
