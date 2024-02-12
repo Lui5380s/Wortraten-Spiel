@@ -30,6 +30,14 @@
         </div>
     </div>
 
+    <!-- Ende Sequenz -->
+    <div id="endSequenz" class="endSequenz">
+        <div class="popup">
+            <h2>Du hast keine Leben mehr du Opfer !!!</h2>
+            <button onclick="closeOverlay()" id="closeButton">Schließen</button>
+        </div>
+    </div>
+
     <!-- Container für die ganze Spiel-Umgebung -->
     <div class="container">
 
@@ -48,8 +56,8 @@
 
             <!-- Text Container neben den Medallien -->
             <div class="textContainer"> 
-                <p class="name">Name: </p><br>
-                <p class="score">Points: </p><br>
+                <p id="name1" class="name">Name: </p><br>
+                <p id="score1" class="score">Points: </p><br>
             
                 <p class="name">Name: </p><br>
                 <p class="score">Points: </p><br>
@@ -74,7 +82,7 @@
 
             <!-- Input Feld für den User um Buchstaben einzugeben -->
             <div>
-                <input class="input" placeholder="Enter a column..." maxlength="1">
+                <input class="input" placeholder="Enter a column..." maxlength="1" id="input">
             </div>
         </div>
     
@@ -84,18 +92,18 @@
 
             <!-- Herz Container mit 10 Herzen -->
             <div class="heartContainer">
-                <div class="heart"></div>
-                <div class="heart"></div>
-                <div class="heart"></div>
-                <div class="heart"></div>
-                <div class="heart"></div>
+                <div class="heart" id="heart1"></div>
+                <div class="heart" id="heart2"></div>
+                <div class="heart" id="heart3"></div>
+                <div class="heart" id="heart4"></div>
+                <div class="heart" id="heart5"></div>
             </div>
             <div class="heartContainer2">
-                <div class="heart"></div>
-                <div class="heart"></div>
-                <div class="heart"></div>
-                <div class="heart"></div>
-                <div class="heart"></div>
+                <div class="heart" id="heart6"></div>
+                <div class="heart" id="heart7"></div>
+                <div class="heart" id="heart8"></div>
+                <div class="heart" id="heart9"></div>
+                <div class="heart" id="heart10"></div>
             </div>
 
             <!-- Reset Buttun um das Spiel neu zu Starten -->
@@ -106,5 +114,7 @@
     
     <!-- Verlinkung von JavaScript -->
     <script src="index.js"></script>
+    <script src="wortwahl.js"></script>
+    <script src="functions.js"></script>
 </body>
 </html>
