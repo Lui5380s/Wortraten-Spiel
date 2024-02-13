@@ -32,6 +32,13 @@ function liveLost() {
 
 // Herzen wieder auffüllen
 function refillHearts() {
+
+    // Erstelle ein neues Audio-Element
+    let audio = new Audio('sounds/mixkit-player-recharging-in-video-game-2041.wav'); // Passe den Pfad zur MP3-Datei an
+    
+    // Spiele das Audio ab, wenn die Herzen wieder aufgefüllt werden
+    audio.play();
+
     for (let i = 1; i <= 10; i++) {
         let heart = document.getElementById("heart" + i);
         if (heart && heart.classList.contains('lost')) {
@@ -56,16 +63,10 @@ function resetGame() {
 // Funktion um game zu beenden
 function resetGame1() {
     Lives = 10;
-    //highScore = 0;
     
-    // Name ändern und an das Element mit der ID 'name1' anhängen
-    let name1Element = document.getElementById('name1');
-    let newName = firstName; // Setze den neuen Namen hier ein
-    name1Element.textContent = 'Name: ' + newName;
-
-
     clearDisplay(); // Leert das Display
     refillHearts(); // Füllt alle Herzen wieder auf
+    sortPlayersByScore();
 }
 
 

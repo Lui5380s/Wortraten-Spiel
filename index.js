@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde und input in Disyplay setzen
     document.getElementById('startButton').addEventListener('click', function () {
+        let audio = new Audio ('sounds/mixkit-player-select-notification-2037.mp3');
+        audio.play()
         Wort = zufälligesWort();
         console.log(Wort);
         
@@ -117,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     // Wenn alle Inputs vom Typ "text" sind, wurde das Wort vollständig erraten
                     if (allInputsText) {
+                        let audio = new Audio('sounds/mixkit-completion-of-a-level-2063.wav');
+                        audio.play();
                         console.log("Wort wurde erraten");
                         highScore++; // Erhöhe den Highscore, wenn das Wort richtig geraten wurde
                         console.log("HighScore ist: " + highScore);
@@ -140,6 +144,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else { 
                     gameArea.style.boxShadow = "0 8px 6px 6px red";
                     liveLost(event);
+                    let audio = new Audio('sounds/mixkit-failure-arcade-alert-notification-240.wav');
+                    audio.play()
                     Lives--;
                     console.log("Verbleibende Leben:", Lives);
 
@@ -156,6 +162,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }, 1000);
             
         } else {
+            let audio = new Audio ('sounds/mixkit-end-of-show-clapping-crowd-477.wav')
+            audio.play()
             document.getElementById('endSequenz').style.display = 'block';
             // Aufrufen der Funktion zum Laden der Kartendaten
             loadCardData();
