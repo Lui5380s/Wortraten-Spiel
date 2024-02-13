@@ -44,7 +44,7 @@ function refillHearts() {
 // Funktion um game zu reseten
 function resetGame() {
     Lives = 10;
-    highScore = 0;
+    //highScore = 0;
 
     clearDisplay(); // Leert das Display
     refillHearts(); // Füllt alle Herzen wieder auf
@@ -55,7 +55,7 @@ function resetGame() {
 // Funktion um game zu beenden
 function resetGame1() {
     Lives = 10;
-    highScore = 0;
+    //highScore = 0;
     
     // Name ändern und an das Element mit der ID 'name1' anhängen
     let name1Element = document.getElementById('name1');
@@ -127,50 +127,23 @@ function appendWortToScreen(Wort) {
     }
 }
 
-// Laden des Highscores aus dem Local Storage
-function loadHighScore() {
-    return parseInt(localStorage.getItem('highScore')) || 0;
-}
+let highScores = [];
 
-// Speichern des Highscores im Local Storage
-function saveHighScore(score) {
-    localStorage.setItem('highScore', score);
-}
+function HighScoreSet(highScore) {
+    let highScoreCount = Names.length - 1;
+    highScoreCount++; // Inkrementiere den Zähler
+    console.log(highScoreCount)
 
-function updateHighScoreDisplay(scores, currentName) {
-    // Überprüfen, ob scores ein Array ist, andernfalls ein leeres Array initialisieren
-    if (!Array.isArray(scores)) {
-        scores = [];
-    }
-    
-    // Sortiere die Highscores nach absteigenden Punktzahlen
-    scores.sort((a, b) => b.score - a.score);
+    // Fügen Sie den neuen Highscore zur Liste hinzu
+    highScores.push(highScore);
+    highScores.sort((a, b) => b - a); // Sortiere das Array absteigend
+    highScores = highScores.slice(0, 3); // Halte nur die ersten drei Highscores
 
-    // Selektiere alle Highscore-Elemente im HTML
-    const highscoreElements = document.querySelectorAll('.textContainer .score');
-
-    // Prüfe, ob der Name bereits in den Highscores vorhanden ist
-    let nameIndex = scores.findIndex(entry => entry.name === currentName);
-
-    if (nameIndex !== -1) {
-        // Wenn der Name bereits vorhanden ist, aktualisiere den entsprechenden Eintrag
-        scores[nameIndex].score++; // Hier kann die Punktzahl aktualisiert werden
+    if (highScoreCount === 1) {
+        document.getElementById("score1").innerHTML = `High Score: ${highScores[0]}`;
+    } else if (highScoreCount === 2) {
+        document.getElementById("score2").innerHTML = `High Score: ${highScores[1]}`;
     } else {
-        // Wenn der Name nicht vorhanden ist, füge einen neuen Eintrag hinzu
-        scores.push({ name: currentName, score: 1 }); // Hier wird die Punktzahl auf 1 gesetzt, da es sich um einen neuen Eintrag handelt
+        document.getElementById("score3").innerHTML = `High Score: ${highScores[2]}`;
     }
-
-    // Iteriere über die sortierten Highscores und aktualisiere die Anzeige im HTML
-    scores.forEach((entry, index) => {
-        if (index < highscoreElements.length) {
-            const highscoreElement = highscoreElements[index];
-            highscoreElement.textContent = `High Score: ${entry.score}`;
-            highscoreElement.previousElementSibling.textContent = `Name: ${entry.name}`;
-        }
-    });
-}
-
-// Funktion zur Generierung einer eindeutigen ID
-function generateUniqueID() {
-    return Math.random().toString(36).substr(2, 9); // Beispiel: "0n4g5t0y8"
 }
