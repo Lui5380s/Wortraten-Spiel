@@ -1,3 +1,4 @@
+var firstName = ""; // Variable zur Speicherung des Namens
 
 // FunKtion, um das Overlay beim Laden der Seite automatisch anzuzeigen
 window.onload = function() {
@@ -146,4 +147,89 @@ function HighScoreSet(highScore) {
     } else {
         document.getElementById("score3").innerHTML = `High Score: ${highScores[2]}`;
     }
+}
+
+function sortPlayersByScore() {
+    // Erstellen eines Arrays, das die Spieler und ihre Punktzahlen enthält
+    let playersWithScores = [];
+
+    // Durchlaufen Sie die Names-Liste und fügen Sie die Spieler und ihre Punktzahlen zum Array hinzu
+    for (let i = 0; i < Names.length; i++) {
+        let playerName = Names[i];
+        let playerScore = highScores[i]; // Nehmen Sie den Highscore des Spielers an der gleichen Position in der Liste
+
+        // Fügen Sie den Spieler und seine Punktzahl zum Array hinzu
+        playersWithScores.push({ name: playerName, score: playerScore });
+    }
+
+    // Sortieren des Arrays basierend auf den Punktzahlen in absteigender Reihenfolge
+    playersWithScores.sort((a, b) => b.score - a.score);
+
+    // Aktualisieren des textContainer mit der sortierten Reihenfolge
+    let updatedText = "";
+    for (let i = 0; i < playersWithScores.length; i++) {
+        let playerName = playersWithScores[i].name;
+        let playerScore = playersWithScores[i].score;
+        updatedText += `${playerName}: ${playerScore}<br>`;
+    }
+
+    // Setzen Sie den aktualisierten Text in den textContainer
+    textContainer.innerHTML = updatedText;
+}
+
+
+// Funktion zum Laden der Kartendaten und Anzeigen der Bilder
+function loadCardData() {
+    // Erstellen einer XMLHttpRequest-Instanz
+    var xhr = new XMLHttpRequest();
+
+    // Festlegen des GET-Anforderungs-URLs
+    var url = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
+
+    // Öffnen der Anforderung
+    xhr.open("GET", url, true);
+
+    // Festlegen der onload-Funktion, die aufgerufen wird, wenn die Anforderung erfolgreich abgeschlossen wurde
+    xhr.onload = function () {
+        // Überprüfen, ob der Statuscode erfolgreich ist (200)
+        if (xhr.status === 200) {
+            // Verarbeiten und Anzeigen der erhaltenen Kartendaten
+            var responseData = JSON.parse(xhr.responseText);
+            displayCardImages(responseData.data); // Funktion aufrufen, um Bilder anzuzeigen
+        } else {
+            console.error("Fehler beim Laden der Kartendaten. Statuscode: " + xhr.status);
+        }
+    };
+
+    // Festlegen der onerror-Funktion, die aufgerufen wird, wenn ein Fehler auftritt
+    xhr.onerror = function () {
+        console.error("Netzwerkfehler beim Laden der Kartendaten.");
+    };
+
+    // Senden der Anforderung
+    xhr.send();
+}
+
+// Funktion zum Anzeigen der Bilder
+function displayCardImages(cards) {
+    // Iterieren Sie über jede Karte und zeigen Sie das Bild an
+    cards.forEach(function(card) {
+        // Erstellen eines img-Elements
+        var img = document.createElement('img');
+        
+        // Festlegen der Quelle des Bildes
+        img.src = card.card_images[0].image_url; // Hier gehen wir davon aus, dass jedes Objekt in der Kartenarray mindestens ein Bild hat
+
+        // CSS-Stile für das Bild festlegen, um es kleiner zu machen
+        img.style.width = "150px"; // Breite auf 150 Pixel festlegen
+        img.style.height = "auto"; // Höhe automatisch anpassen, um das Seitenverhältnis beizubehalten
+
+        // Fügen Sie das Bild dem Dokument hinzu, z.B. zu einem bestimmten div-Element mit der ID "cardImagesContainer"
+        document.getElementById('cardImagesContainer').appendChild(img);
+
+        // Nach 2 Sekunden das Bild aus dem Dokument entfernen
+        setTimeout(function() {
+            img.remove();
+        }, 2000);
+    });
 }

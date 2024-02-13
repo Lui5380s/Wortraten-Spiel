@@ -10,8 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let resetButtonPressed = false;
     let wortIstRichtig = false;
     let eingabe = "";
-    let firstName = ""; // Variable zur Speicherung des Namens
-
 
     document.getElementById('endSequenz').style.display = 'none';
 
@@ -159,7 +157,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
         } else {
             document.getElementById('endSequenz').style.display = 'block';
-            //updateHighScore(highScore); // Aktualisiere den Highscore
+            // Aufrufen der Funktion zum Laden der Kartendaten
+            loadCardData();
+            //sortPlayersByScore();
             resetGame1();
         }
     });
@@ -168,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("resetButton").addEventListener("click", function(event){
         var nameField = document.getElementById("nameField");
         nameField.value = ""; // Leere das Input-Feld
-        resetGame(); // Setze das Spiel zurück
+        resetGame(); // Setze das Spiel zurück 
     });
-
 });
