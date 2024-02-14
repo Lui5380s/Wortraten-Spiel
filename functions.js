@@ -70,7 +70,7 @@ function resetGame1() {
     
     clearDisplay(); // Leert das Display
     refillHearts(); // Füllt alle Herzen wieder auf
-    sortPlayersByScore();
+    sortContainersByScore();
 }
 
 
@@ -264,3 +264,13 @@ async function fetchData3 (){
         console.log(error);
     }
 }
+
+// Funktion, die überprüft, ob der Button true zurückgibt
+function buttonClicked() {
+    if (document.getElementById('closeButton').click === true) { 
+        return true; // Beispiel: Gib true zurück, wenn der Button geklickt wurde
+    } 
+    else {
+        return false; // Beispiel: Gib false zurück, wenn der Button nicht geklickt wurde
+    }
+};

@@ -11,46 +11,36 @@ document.addEventListener("DOMContentLoaded", function() {
     let highScore = 0;
     let Wort = "";
     let resetButtonPressed = false;
-    let wortIstRichtig = false;
     let eingabe = "";
 
     document.getElementById('endSequenz').style.display = 'none';
 
     let nameCount = 0; // Zählvariable für die Anzahl der erstellten Namen
+    var button = false;
 
     var nameField = document.getElementById('nameField');
     var anzeigeBuchstaben = document.querySelector('.anzeigeNamen');
-    var textContainer = document.querySelector('.textContainer');
+    var button = document.getElementById("closeButton");
+    var buttonClicked = false; // Initialer Zustand des Buttons: nicht geklickt
 
-    // Schleife zur Überwachung des "nameField"
-    nameField.addEventListener("input", function (event) {
-        let name = nameField.value.trim(); // Eingegebenen Namen abrufen und führende/trailing Leerzeichen entfernen
-        if (name !== "") {        
-            // Hänge den neuen Namen zur Liste hinzu
-            Names.push(name);
-            console.log(Names)
-
-            // Inkrementiere die Zählvariable für die Anzahl der erstellten Namen
-            nameCount++;
-
+        // Füge einen Event-Listener für den Button hinzu
+    button.addEventListener("click", function() {
+        // Setze den Zustand von buttonClicked auf true, wenn der Button geklickt wurde
+            buttonClicked = true;
+            console.log("Button wurde geklickt.");
+            let name = nameField.value.trim(); // Hole den eingegebenen Namen
+            Names.push(name); // Füge den Namen zur Liste hinzu
+            nameCount++; // Erhöhe die Anzahl der Namen um eins
             // Aktualisiere die Anzeige im ".anzeigeNamen" Element
             anzeigeBuchstaben.textContent = name;
-
-            //Überprüfen, ob bereits ein Element mit der entsprechenden ID vorhanden ist
-            let existingElement = document.getElementById(`name${nameCount}`);
-            if (existingElement) {
-                // Wenn ein Element mit der ID vorhanden ist, aktualisiere den Textinhalt
-                existingElement.textContent = `Name: ${name}`;
+            if (nameCount === 1) {
+                document.getElementById("name1").innerHTML = `Name: ${Names[0]}`;
+            } else if (nameCount === 2) {
+                document.getElementById("name2").innerHTML = `Name: ${Names[1]}`;
             } else {
-                // Wenn kein Element vorhanden ist, erstelle ein neues Element für den Namen
-                let newElement = document.createElement('p');
-                newElement.textContent = `Name: ${name}`;
-                newElement.id = `name${nameCount}`;
-
-                // Füge das neue Element dem ".textContainer" Element hinzu
-                textContainer.appendChild(newElement);
+                document.getElementById("name3").innerHTML = `Name: ${Names[2]}`;
             }
-        }
+            console.log(Names);    
     });
 
     // Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde und input in Disyplay setzen
