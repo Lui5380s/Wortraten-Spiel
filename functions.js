@@ -10,12 +10,16 @@ function closeOverlay() {
     var name = document.getElementById('nameField').value;
     if (name !== "") {
         document.querySelector('.overlay').style.display = 'none';
-        document.querySelector('.endSequenz').style.display = 'none';
     } else {
         alert("Bitte geben Sie einen Namen ein.");
     }
 }
 
+function closeEnd (){
+    document.querySelector('.endSequenz').style.display = 'none';
+    resetGame();
+    nameField.value = ""; // Leere das Input-Feld
+}
 
 // Funnktion wenn Leben veloren ist 
 function liveLost() {
@@ -143,9 +147,11 @@ function HighScoreSet(highScore) {
 
     if (highScoreCount === 1) {
         document.getElementById("score1").innerHTML = `High Score: ${highScores[0]}`;
-    } else if (highScoreCount === 2) {
+    } 
+    else if (highScoreCount === 2) {
         document.getElementById("score2").innerHTML = `High Score: ${highScores[1]}`;
-    } else {
+    } 
+    else {
         document.getElementById("score3").innerHTML = `High Score: ${highScores[2]}`;
     }
 }
@@ -178,59 +184,25 @@ function sortPlayersByScore() {
     textContainer.innerHTML = updatedText;
 }
 
+async function fetchData() {
 
-// Funktion zum Laden der Kartendaten und Anzeigen der Bilder
-function loadCardData() {
-    // Erstellen einer XMLHttpRequest-Instanz
-    var xhr = new XMLHttpRequest();
+    try{
 
-    // Festlegen des GET-Anforderungs-URLs
-    var url = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
-    // Öffnen der Anforderung
-    xhr.open("GET", url, true);
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
 
-    // Festlegen der onload-Funktion, die aufgerufen wird, wenn die Anforderung erfolgreich abgeschlossen wurde
-    xhr.onload = function () {
-        // Überprüfen, ob der Statuscode erfolgreich ist (200)
-        if (xhr.status === 200) {
-            // Verarbeiten und Anzeigen der erhaltenen Kartendaten
-            var responseData = JSON.parse(xhr.responseText);
-            displayCardImages(responseData.data); // Funktion aufrufen, um Bilder anzuzeigen
-        } else {
-            console.error("Fehler beim Laden der Kartendaten. Statuscode: " + xhr.status);
+        if(!response.ok) {
+            throw new Error("konnte nicht fetch");
         }
-    };
 
-    // Festlegen der onerror-Funktion, die aufgerufen wird, wenn ein Fehler auftritt
-    xhr.onerror = function () {
-        console.error("Netzwerkfehler beim Laden der Kartendaten.");
-    };
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("cardImagesContainer");
 
-    // Senden der Anforderung
-    xhr.send();
-}
-
-// Funktion zum Anzeigen der Bilder
-function displayCardImages(cards) {
-    // Iterieren Sie über jede Karte und zeigen Sie das Bild an
-    cards.forEach(function(card) {
-        // Erstellen eines img-Elements
-        var img = document.createElement('img');
-        
-        // Festlegen der Quelle des Bildes
-        img.src = card.card_images[0].image_url; // Hier gehen wir davon aus, dass jedes Objekt in der Kartenarray mindestens ein Bild hat
-
-        // CSS-Stile für das Bild festlegen, um es kleiner zu machen
-        img.style.width = "150px"; // Breite auf 150 Pixel festlegen
-        img.style.height = "auto"; // Höhe automatisch anpassen, um das Seitenverhältnis beizubehalten
-
-        // Fügen Sie das Bild dem Dokument hinzu, z.B. zu einem bestimmten div-Element mit der ID "cardImagesContainer"
-        document.getElementById('cardImagesContainer').appendChild(img);
-
-        // Nach 2 Sekunden das Bild aus dem Dokument entfernen
-        setTimeout(function() {
-            img.remove();
-        }, 2000);
-    });
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block"
+    }
+    catch(error){
+        console.log('Fehler beim Abrufen der Pokémondaten');
+    }
 }

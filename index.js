@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Aktualisiere die Anzeige im ".anzeigeNamen" Element
             anzeigeBuchstaben.textContent = name;
 
-            // Überprüfen, ob bereits ein Element mit der entsprechenden ID vorhanden ist
+            //Überprüfen, ob bereits ein Element mit der entsprechenden ID vorhanden ist
             let existingElement = document.getElementById(`name${nameCount}`);
             if (existingElement) {
                 // Wenn ein Element mit der ID vorhanden ist, aktualisiere den Textinhalt
@@ -104,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (istBuchstabeRichtig(eingabe, Wort)) { 
                     // Ändere die Randfarbe der gameArea auf Grün
                     gameArea.style.boxShadow = "0 8px 6px 6px green";
+                    let audio = new Audio ('sounds/mixkit-achievement-bell-600.wav')
+                    audio.play()
                     
                     // Durchlaufe das Wort und ändere den Typ jedes passenden Buchstabens auf "text"
                     let allInputsText = true; // Initialisiere die Variable
@@ -162,12 +164,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }, 1000);
             
         } else {
-            let audio = new Audio ('sounds/mixkit-end-of-show-clapping-crowd-477.wav')
-            audio.play()
             document.getElementById('endSequenz').style.display = 'block';
             // Aufrufen der Funktion zum Laden der Kartendaten
-            loadCardData();
-            //sortPlayersByScore();
+            fetchData();
+            let audio1 = new Audio ('sounds/Voicy_Pokemon theme song .mp3')
+            audio1.play()
             resetGame1();
         }
     });
