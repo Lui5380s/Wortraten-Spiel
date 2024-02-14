@@ -1,0 +1,312 @@
+body {
+    margin: 0;
+    background-image: url("neeqolah-creative-works-Tn5gnXGI3hI-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Allgemeines Styling für header2 */
+h2 {
+    font-family: 'Honk';
+    text-align: center;
+    font-size: 35px;
+}
+
+/* Aufpop-Fenster beim Laden der  Website */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Halbtransparentes Schwarz */
+    z-index: 9999; /* Hohe Z-Index-Wert, um das Overlay über allem zu positionieren */       
+    display: none; /* Anfangs ausgeblendet */
+    justify-content: center;
+    align-items: center;
+}
+
+.endSequenz  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Halbtransparentes Schwarz */
+    z-index: 9000; /* Hohe Z-Index-Wert, um das Overlay über allem zu positionieren */       
+    display: none; /* Anfangs ausgeblendet */
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    background-color: white;
+    width: 700px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup h2 {
+    margin-top: 0;
+}
+
+.nameField {
+    border: none;
+    height:  40px;
+    font-family: "Honk";
+    font-size: larger;
+}
+
+.popup button {
+    margin-top: 10px;
+    width: 100px;
+    height: 40px;
+    border: solid black 3px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: larger;
+    font-family: "Honk";
+    margin-left: 5rem;
+}
+
+/* Header Styling und Container für allgemeine Umgebung  */
+.header {
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Honk';
+    font-size: 80px;
+    margin-bottom: -20px;
+}
+
+.container {
+    margin-top: -70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: black;
+}
+
+/* Game Area in der Mitte */
+.gameArea {
+    height: 600px;
+    width: 500px;
+    border: solid black 1px;
+    border-radius: 10px;
+    margin-left: 50px; 
+    box-shadow: 0 8px 6px 6px #000;
+    background-color: white;
+}
+
+.anzeige {
+    height: 200px;
+    width: 450px;
+    border: solid #070707c6 5px;
+    box-shadow: 0 4px 4px 4px #000;
+    border-radius: 15px;
+    background-image: linear-gradient(to top, #dbc90b 0%, rgb(223, 22, 230) 60%);
+    margin-left: 1.25rem;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px;
+}
+
+.word {
+    box-shadow: 0 8px 6px 6px #000;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    height: 30px;
+    width: 20px;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.anzeigeNamen {
+    width: 300px;
+    height: 50px; 
+    border: solid #070707c6 5px;
+    box-shadow: 0 4px 4px 4px #000;
+    border-radius: 15px;
+    margin-left: 5.5rem;
+    margin-top: 2rem;
+    font-family: 'Honk';
+    text-align: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.input {
+    border: none;
+    width: 450px;
+    height: 50px; 
+    border: solid #070707c6 5px;
+    box-shadow: 0 4px 4px 4px #000;
+    border-radius: 15px;
+    margin-left: 1.2rem;
+    margin-top: 6rem;
+    text-align: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Honk';
+}
+
+/* High Score links */
+.highScore { 
+    opacity: 0.95;
+    height: 400px; 
+    width: 350px;
+    border: solid black 1px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap; /* Elemente werden automatisch auf mehrere Zeilen verteilt */
+    align-items: flex-start; /* Inhalt linksbündig ausrichten */
+    box-shadow: 0 8px 6px 6px #000;
+    background-color: white;
+}
+
+.headerContainer {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.medContainer{
+    /*background-color: #dbc90b;  /*Benutzt um die Container richtig auszurichten*/
+    height: 300px;
+    width: 80px;
+}
+
+.textContainer {
+    /*background-color: aquamarine;  /*Benutzt um die Container richtig auszurichten */
+    height: 300px;
+    width: 270px;
+    margin-top: 1rem;
+}
+    
+
+.Image {
+    margin: 5px; /* Abstand zwischen den Elementen */
+    background-color: #fff;
+    width: 69px;
+    height: 69px; 
+    transition: transform 0.3s ease;
+}
+
+.Image:hover {
+    transform: scale(1.1);
+}
+
+.name, .score {
+    font-family: "Honk";
+    font-size: 22px;
+    margin: 0; /* Entferne den Standardabstand */
+}
+
+.name {
+    margin-left: 20px; /* Abstand zwischen Bild und Namen */
+}
+
+.score {
+    margin-left: 20px; /* Abstand zwischen Namen und Punkten */
+}
+
+/* Start Button */
+.startButton {
+    border: solid black 5px;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 0 4px 8px 6px #000; 
+    justify-content: center;
+    width: 130px;
+    height: 60px;
+    background-color: white;
+    font-family: "Honk";
+    font-size: 40px;
+    margin-left: 10rem;
+    margin-bottom: -7rem;
+    transition: transform 0.4s ease;
+}
+
+.startButton:hover {
+    box-shadow: 0 4px 6px 6px rgb(22, 223, 230);
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/* Progress Area rechts */
+.progressArea {
+    opacity: 0.95;
+    height: 400px;
+    width: 350px;
+    border: solid rgb(0, 0, 0) 1px; 
+    border-radius: 10px;
+    margin-left: 50px; 
+    box-shadow: 0 8px 6px 6px #000;
+    background-color: white;
+}
+
+.heartContainer {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    background-color: white;
+    height: auto;
+}
+
+.heartContainer2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; 
+    background-color: white;
+    height: auto;
+    margin-top: 1.5rem;
+}
+
+.heart {
+    width: 50px; 
+    height: 50px; 
+    margin-left: 10px;
+    background-image: url("gaming\ herzen\ –\ Google\ Suche.png"); 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+}
+
+.heart:hover {
+    transform: scale(1.2);
+}
+
+.resetButton {
+    border: solid #000000c6 5px;
+    box-shadow: 0 4px 4px 4px #000;
+    border-radius: 15px;
+    height: 50px;
+    width: 100px;
+    font-family: "Honk";
+    font-size: 25px;
+    margin-top: 3rem;
+    margin-left: 8rem;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.resetButton:hover {
+    box-shadow: 0 4px 4px 4px rgb(255, 80, 80);
+    border: solid #070707c6 5px;
+    transform: scale(1.1);
+}
+
+.cardImagesContainer {
+    width: 300px;
+    height: auto;
+}
