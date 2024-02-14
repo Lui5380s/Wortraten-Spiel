@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wortraten-Spiel</title>
+
+    <!-- Einbindung aus Google Fonds -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="Bildschirmfoto 2024-02-14 um 10.55.33.png" type="image/x-icon">
+
+    <!-- verlinkung von CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Überschrift der Website -->
+    <h1 class="header">Guess the Word</h1>
+
+    <button id="startButton" class="startButton">Start!</button>
+
+    <!-- Popup Overlay -->
+    <div id="overlay" class="overlay">
+        <div class="popup">
+            <h2>Anleitung</h2>
+            <p>Willkommen beim "Guess the Word" Spiel! Das Spiel besteht darin, ein geheimes Wort zu erraten, indem du Buchstaben eingibst. Der Spielbereich zeigt das zu erratende Wort an, wobei jedes leere Feld einen Buchstaben repräsentiert. Gib deine Vermutungen in den Eingabebereich ein, aber achte darauf, deine Versuche klug zu nutzen, da jede falsche Vermutung ein Herz kostet. Der Highscore-Bereich zeigt eine Liste der Spieler mit den höchsten Punktzahlen. Gib einfach deinen Namen unten ein, klicke dann auf "Start!", um das Spiel zu beginnen. Hinweis: Um auf den ersten Platz zu stehen musst du immer ein Wort mehr erraten, als der jetzige Spitzenreiter.<b> Viel Spaß beim Raten und viel Glück!</b></p>
+            <input type="text" placeholder="Name eingeben..." id="nameField" class="nameField">
+            <button onclick="closeOverlay()" id="closeButton">Schließen</button>
+        </div>
+    </div>
+
+    <!-- Ende Sequenz -->
+    <div id="endSequenz" class="endSequenz">
+        <div class="popup">
+            <h2>Du hast keine Leben mehr du Opfer !!!</h2>
+            <img src="" id="cardImagesContainer" style="display: none;">
+            <button onclick="closeEnd()" id="closeButton">Schließen</button>
+        </div>
+    </div>
+
+    <!-- Container für die ganze Spiel-Umgebung -->
+    <div class="container">
+
+        <!-- highScore am linken Rand -->
+        <div class="highScore" id="highScore">
+            <div class="headerContainer">
+                <h2>High Score</h2>
+            </div>
+
+            <!-- Medallien Container -->
+            <div class="medContainer"> 
+                <img id="Image1" src="" alt="Charmander Image">
+                <img id="Image2" src="" alt="Charmander Image">
+                <img id="Image3" src="" alt="Charmander Image">
+            </div>
+
+            <!-- Text Container neben den Medallien -->
+            <div class="textContainer"> 
+                <div id="cont1">
+                    <p id="name1" class="name">Name: </p><br>
+                    <p id="score1" class="score">High Score: </p><br>
+                </div>
+                <div id="cont2">
+                    <p id="name2" class="name">Name: </p><br>
+                    <p id="score2" class="score">High Score: </p><br>
+                </div>
+                <div id="cont3">
+                    <p id="name3" class="name">Name: </p><br>
+                    <p id="score3" class="score">High Score: </p><br>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- gameArea in der Mitte des OnePagers -->
+        <div class="gameArea" id="gameArea">
+            <h2>Play</h2>
+
+            <!-- Display Anzeige für Buchstaben -->
+            <div class="anzeige"></div>
+
+            <!-- Anzeige für den Spielernamen -->
+            <div class="anzeigeNamen"></div>
+
+            <!-- Input Feld für den User um Buchstaben einzugeben -->
+            <div>
+                <input class="input" placeholder="Enter a column..." maxlength="1" id="input">
+            </div>
+        </div>
+    
+        <!-- prograssArea am rechte  Rand  -->
+        <div class="progressArea" id="progressArea">
+            <h2>Progress</h2>
+
+            <!-- Herz Container mit 10 Herzen -->
+            <div class="heartContainer">
+                <div class="heart" id="heart1"></div>
+                <div class="heart" id="heart2"></div>
+                <div class="heart" id="heart3"></div>
+                <div class="heart" id="heart4"></div>
+                <div class="heart" id="heart5"></div>
+            </div>
+            <div class="heartContainer2">
+                <div class="heart" id="heart6"></div>
+                <div class="heart" id="heart7"></div>
+                <div class="heart" id="heart8"></div>
+                <div class="heart" id="heart9"></div>
+                <div class="heart" id="heart10"></div>
+            </div>
+
+            <!-- Reset Buttun um das Spiel neu zu Starten -->
+            <button class="resetButton" id="resetButton">Reset</button>
+
+        </div>
+    </div>
+    
+    <!-- Verlinkung von JavaScript -->
+    <script src="index.js"></script>
+    <script src="wortwahl.js"></script>
+    <script src="functions.js"></script>
+</body>
+</html>
