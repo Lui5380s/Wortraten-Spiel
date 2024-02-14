@@ -156,38 +156,33 @@ function HighScoreSet(highScore) {
     }
 }
 
-function sortPlayersByScore() {
-    // Erstellen eines Arrays, das die Spieler und ihre Punktzahlen enthält
-    let playersWithScores = [];
 
-    // Durchlaufen Sie die Names-Liste und fügen Sie die Spieler und ihre Punktzahlen zum Array hinzu
-    for (let i = 0; i < Names.length; i++) {
-        let playerName = Names[i];
-        let playerScore = highScores[i]; // Nehmen Sie den Highscore des Spielers an der gleichen Position in der Liste
+function sortContainersByScore() {
+    // Array mit den IDs der Container in der gewünschten Reihenfolge
+    const containerIds = ["cont1", "cont2", "cont3"];
 
-        // Fügen Sie den Spieler und seine Punktzahl zum Array hinzu
-        playersWithScores.push({ name: playerName, score: playerScore });
-    }
+    // Erstellen eines Arrays von Objekten, das die Container-IDs und ihre entsprechenden Punktzahlen enthält
+    const containerScores = containerIds.map(id => {
+        const scoreElement = document.getElementById("score" + id.substring(4)); // Die ID des Punktzahl-Elements
+        const score = parseInt(scoreElement.textContent.split(":")[1].trim()); // Die Punktzahl extrahieren und in eine Zahl umwandeln
+        return { id, score };
+    });
 
-    // Sortieren des Arrays basierend auf den Punktzahlen in absteigender Reihenfolge
-    playersWithScores.sort((a, b) => b.score - a.score);
+    // Sortieren des Arrays nach den Punktzahlen in absteigender Reihenfolge
+    containerScores.sort((a, b) => b.score - a.score);
 
-    // Aktualisieren des textContainer mit der sortierten Reihenfolge
-    let updatedText = "";
-    for (let i = 0; i < playersWithScores.length; i++) {
-        let playerName = playersWithScores[i].name;
-        let playerScore = playersWithScores[i].score;
-        updatedText += `${playerName}: ${playerScore}<br>`;
-    }
-
-    // Setzen Sie den aktualisierten Text in den textContainer
-    textContainer.innerHTML = updatedText;
+    // Aktualisieren der Reihenfolge der Container im DOM entsprechend der sortierten Reihenfolge
+    containerScores.forEach((container, index) => {
+        const containerElement = document.getElementById(container.id);
+        const textContainer = document.querySelector('.textContainer');
+        textContainer.appendChild(containerElement); // Verschieben des Containers ans Ende der .textContainer
+    });
 }
+
 
 async function fetchData() {
 
     try{
-
 
         const response = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
 
@@ -204,5 +199,68 @@ async function fetchData() {
     }
     catch(error){
         console.log('Fehler beim Abrufen der Pokémondaten');
+    }
+}
+
+async function fetchData1 (){
+    try{
+
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/charmander")
+
+        if(!response.ok) {
+            throw new Error("konnte nicht fetch");
+        }
+
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("Image3");
+
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block"
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function fetchData2 (){
+    try{
+
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/charmeleon")
+
+        if(!response.ok) {
+            throw new Error("konnte nicht fetch");
+        }
+
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("Image2");
+
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block"
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function fetchData3 (){
+    try{
+
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/charizard")
+
+        if(!response.ok) {
+            throw new Error("konnte nicht fetch");
+        }
+
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("Image1");
+
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block"
+    }
+    catch(error){
+        console.log(error);
     }
 }

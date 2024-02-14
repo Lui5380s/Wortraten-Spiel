@@ -1,8 +1,11 @@
-
 var Names = [];
 
 document.addEventListener("DOMContentLoaded", function() {
     // Hier kommt der gesamte Code hin, den Sie beim Laden des DOM ausführen möchten
+    
+    fetchData1()
+    fetchData2()
+    fetchData3()
 
     let Lives = 10;
     let highScore = 0;
@@ -134,8 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         appendWortToScreen(Wort);
                         var inputField = document.getElementById('input');
                         inputField.value = ''; // Leert den Inhalt des Input-Feldes
-                        // Nachdem das Wort erraten wurde, rufe die updateHighScoreDisplay-Funktion auf
-                        //updateHighScoreDisplay(highScore);
+                        sortContainersByScore();
                     }
                     
                     // Warte 2 Sekunden und setze dann die Box-Schatten-Eigenschaft zurück

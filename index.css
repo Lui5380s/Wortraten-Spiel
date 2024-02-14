@@ -177,15 +177,16 @@ h2 {
 }
 
 .medContainer{
-    /*background-color: #dbc90b;  Benutzt um die Container richtig auszurichten*/
+    /*background-color: #dbc90b;  /*Benutzt um die Container richtig auszurichten*/
     height: 300px;
-    width: 70px;
+    width: 80px;
 }
 
 .textContainer {
-    /*background-color: aquamarine;  Benutzt um die Container richtig auszurichten */
+    /*background-color: aquamarine;  /*Benutzt um die Container richtig auszurichten */
     height: 300px;
-    width: 280px;
+    width: 270px;
+    margin-top: 1rem;
 }
     
 
