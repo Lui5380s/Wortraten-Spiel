@@ -138,12 +138,13 @@ let highScores = [];
 function HighScoreSet(highScore) {
     let highScoreCount = Names.length - 1;
     highScoreCount++; // Inkrementiere den Zähler
-    console.log(highScoreCount)
+    console.log("High Score Count: " + highScoreCount)
 
     // Fügen Sie den neuen Highscore zur Liste hinzu
     highScores.push(highScore);
     highScores.sort((a, b) => b - a); // Sortiere das Array absteigend
-    highScores = highScores.slice(0, 3); // Halte nur die ersten drei Highscores
+    highScores = highScores.slice(0, Names.length); // Kürze das Array auf die Länge von Names
+    console.log(highScores)
 
     if (highScoreCount === 1) {
         document.getElementById("score1").innerHTML = `High Score: ${highScores[0]}`;
