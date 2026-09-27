@@ -2,6 +2,8 @@
 
 Ein Browser-Wortratespiel im Stil von Galgenmännchen, gebaut mit reinem HTML, CSS und JavaScript – ohne Frameworks oder Build-Schritt. Entstanden als Uni-Projekt.
 
+**▶ Live spielen: https://lui5380s.github.io/Wortraten-Spiel/**
+
 ![Screenshot](assets/screenshot.jpg)
 
 ## Spielablauf
