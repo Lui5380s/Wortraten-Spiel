@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Hinweis zum aktuellen Wort erneut anzeigen
     document.getElementById("hinweisButton").addEventListener("click", function() {
         if (aktuellerHinweis !== "") {
-            showHint(aktuellerHinweis);
+            showHint(aktuellerHinweis, aktuelleKategorie);
         }
     });
 

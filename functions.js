@@ -19,11 +19,14 @@ function zeigeGameOver(score) {
 }
 
 var aktuellerHinweis = ""; // Hinweis zum aktuellen Wort, damit er erneut angezeigt werden kann
+var aktuelleKategorie = "";
 
-// Hinweis im Popup anzeigen
-function showHint(hinweis) {
+// Hinweis samt Kategorie im Popup anzeigen
+function showHint(hinweis, kategorie) {
     aktuellerHinweis = hinweis;
+    aktuelleKategorie = kategorie;
     document.getElementById('hinweisButton').disabled = false;
+    document.getElementById('hinweisKategorie').textContent = "Kategorie: " + kategorie;
     document.getElementById('hinweisText').textContent = hinweis;
     document.getElementById('hinweisOverlay').style.display = 'flex';
     document.getElementById('input').blur(); // Keine Eingaben hinter dem Popup
