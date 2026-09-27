@@ -32,12 +32,22 @@
         </div>
     </div>
 
+    <!-- Hinweis zum aktuellen Wort -->
+    <div id="hinweisOverlay" class="overlay">
+        <div class="popup">
+            <h2>Hinweis</h2>
+            <p id="hinweisText" class="popupText"></p>
+            <button onclick="closeHint()" id="hinweisClose">Weiter</button>
+        </div>
+    </div>
+
     <!-- Ende Sequenz -->
     <div id="endSequenz" class="endSequenz">
         <div class="popup">
-            <h2>Game Over – du hast keine Leben mehr!</h2>
-            <img src="" id="cardImagesContainer" style="display: none;">
-            <button onclick="closeEnd()" id="closeButton">Schließen</button>
+            <h2>Game Over</h2>
+            <p class="popupText">Danke fürs Spielen!</p>
+            <p class="popupText">Erratene Wörter: <b id="endScore">0</b></p>
+            <button onclick="closeEnd()" id="endButton">Try again</button>
         </div>
     </div>
 
@@ -84,6 +94,9 @@
 
             <!-- Anzeige für den Spielernamen -->
             <div class="anzeigeNamen"></div>
+
+            <!-- Button um den Hinweis erneut anzuzeigen -->
+            <button class="hinweisButton" id="hinweisButton" disabled>💡 Hinweis</button>
 
             <!-- Input Feld für den User um Buchstaben einzugeben -->
             <div>

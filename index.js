@@ -146,20 +146,37 @@ document.addEventListener("DOMContentLoaded", function() {
                     setTimeout(function() {
                         gameArea.style.boxShadow = ""; // Setze die Box-Schatten-Eigenschaft zurück
                     }, 1000);
+
+                    // Letztes Herz verloren: Spiel sofort beenden
+                    if (Lives === 0) {
+                        zeigeGameOver(highScore);
+                        resetGame1();
+                    }
                 }
             }
-            
+
 
             // Input-Feld leeren nach 1 Sekunde
             setTimeout(function() {
                 event.target.value = ""; // Leeren des Input-Feldes
             }, 1000);
-            
+
         } else {
-            document.getElementById('endSequenz').style.display = 'block';
-            // Aufrufen der Funktion zum Laden der Kartendaten
-            fetchData();
-            resetGame1();
+            event.target.value = ""; // Spiel ist vorbei, keine weiteren Eingaben
+        }
+    });
+
+    // Hinweis zum aktuellen Wort erneut anzeigen
+    document.getElementById("hinweisButton").addEventListener("click", function() {
+        if (aktuellerHinweis !== "") {
+            showHint(aktuellerHinweis);
+        }
+    });
+
+    // Enter schließt das Hinweis-Fenster
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" && document.getElementById('hinweisOverlay').style.display === 'flex') {
+            closeHint();
         }
     });
 

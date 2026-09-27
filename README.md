@@ -9,18 +9,18 @@ Ein Browser-Wortratespiel im Stil von Galgenmännchen, gebaut mit reinem HTML, C
 ## Spielablauf
 
 1. Namen eingeben und auf **Start!** klicken.
-2. Das Spiel wählt ein zufälliges Wort aus einer von vier Kategorien (Früchte, Sport, Automarken, Musikrichtungen) und zeigt einen Hinweis an.
+2. Das Spiel wählt ein zufälliges Wort aus einer von vier Kategorien (Früchte, Sport, Automarken, Musikrichtungen) und zeigt einen Hinweis dazu an.
 3. Buchstaben einzeln eingeben – jeder richtige Buchstabe wird im Wort aufgedeckt.
 4. Jeder falsche Buchstabe kostet ein Herz. Du hast 10 Leben.
-5. Für jedes erratene Wort gibt es einen Punkt und ein neues Wort. Sind alle Herzen weg, ist das Spiel vorbei.
+5. Für jedes erratene Wort gibt es einen Punkt und ein neues Wort. Sind alle Herzen weg, ist das Spiel vorbei und du siehst, wie viele Wörter du erraten hast.
 
 ## Funktionen
 
 - **Highscore-Liste** mit den drei besten Spielern der aktuellen Sitzung, automatisch sortiert
 - **10 Leben** als animierte Pixel-Herzen
-- **Hinweise** zu jedem Wort
+- **Hinweise** zu jedem Wort – über den 💡-Button jederzeit erneut abrufbar
 - **Soundeffekte** für richtige und falsche Eingaben und gelöste Wörter
-- **PokéAPI-Anbindung**: Sprites für die Highscore-Plätze und den Game-Over-Screen werden live von der [PokéAPI](https://pokeapi.co/) geladen
+- **PokéAPI-Anbindung**: Die Sprites neben der Highscore-Liste werden live von der [PokéAPI](https://pokeapi.co/) geladen
 
 ## Starten
 

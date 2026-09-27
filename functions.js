@@ -21,6 +21,30 @@ function closeEnd (){
     nameField.value = ""; // Leere das Input-Feld
 }
 
+// Game-Over-Fenster mit der Anzahl der erratenen Wörter anzeigen
+function zeigeGameOver(score) {
+    document.getElementById('endScore').textContent = score;
+    document.getElementById('endSequenz').style.display = 'flex';
+    document.getElementById('input').blur(); // Keine Eingaben mehr hinter dem Fenster
+}
+
+var aktuellerHinweis = ""; // Hinweis zum aktuellen Wort, damit er erneut angezeigt werden kann
+
+// Hinweis im Popup anzeigen
+function showHint(hinweis) {
+    aktuellerHinweis = hinweis;
+    document.getElementById('hinweisButton').disabled = false;
+    document.getElementById('hinweisText').textContent = hinweis;
+    document.getElementById('hinweisOverlay').style.display = 'flex';
+    document.getElementById('input').blur(); // Keine Eingaben hinter dem Popup
+}
+
+// Hinweis-Popup schließen und direkt weiterspielen
+function closeHint() {
+    document.getElementById('hinweisOverlay').style.display = 'none';
+    document.getElementById('input').focus();
+}
+
 // Funnktion wenn Leben veloren ist 
 function liveLost() {
     for (let i = 1; i <= 10; i++) {
@@ -83,7 +107,10 @@ function clearDisplay() {
     display.innerHTML = ''; // Leert den HTML-Inhalt des Anzeigebereichs
     inputField.value = ''; // Leert den Inhalt des Input-Feldes
     nameDisplay.innerHTML = ''; // Leert den Inhalt des Namensfeldes
-} 
+
+    aktuellerHinweis = ""; // Ohne Wort gibt es auch keinen Hinweis
+    document.getElementById('hinweisButton').disabled = true;
+}
 
 
 // Funktion um zu überprüfen, ob der eingegebene Buchstabe im Wort enthalten ist
@@ -181,27 +208,6 @@ function sortContainersByScore() {
 }
 
 
-async function fetchData() {
-
-    try{
-
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-
-        if(!response.ok) {
-            throw new Error("konnte nicht fetch");
-        }
-
-        const data = await response.json();
-        const pokemonSprite = data.sprites.front_default;
-        const imgElement = document.getElementById("cardImagesContainer");
-
-        imgElement.src = pokemonSprite;
-        imgElement.style.display = "block"
-    }
-    catch(error){
-        console.log('Fehler beim Abrufen der Pokémondaten');
-    }
-}
 
 async function fetchData1 (){
     try{
