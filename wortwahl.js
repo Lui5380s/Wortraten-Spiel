@@ -83,6 +83,8 @@ const Musikrichtung = [
         // Hinweis nach 1 Sekunde ausgeben
         setTimeout(function() {
             alert(hinweis);
+            let audio = new Audio ('sounds/mixkit-arcade-bonus-alert-767.wav');
+            audio.play();
         }, 1000);
                 
         return zufälligesWort;

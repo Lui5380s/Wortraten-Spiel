@@ -1,3 +1,4 @@
+var firstName = ""; // Variable zur Speicherung des Namens
 
 // FunKtion, um das Overlay beim Laden der Seite automatisch anzuzeigen
 window.onload = function() {
@@ -9,12 +10,16 @@ function closeOverlay() {
     var name = document.getElementById('nameField').value;
     if (name !== "") {
         document.querySelector('.overlay').style.display = 'none';
-        document.querySelector('.endSequenz').style.display = 'none';
     } else {
         alert("Bitte geben Sie einen Namen ein.");
     }
 }
 
+function closeEnd (){
+    document.querySelector('.endSequenz').style.display = 'none';
+    resetGame();
+    nameField.value = ""; // Leere das Input-Feld
+}
 
 // Funnktion wenn Leben veloren ist 
 function liveLost() {
@@ -31,6 +36,13 @@ function liveLost() {
 
 // Herzen wieder auffüllen
 function refillHearts() {
+
+    // Erstelle ein neues Audio-Element
+    let audio = new Audio('sounds/mixkit-player-recharging-in-video-game-2041.wav'); // Passe den Pfad zur MP3-Datei an
+    
+    // Spiele das Audio ab, wenn die Herzen wieder aufgefüllt werden
+    audio.play();
+
     for (let i = 1; i <= 10; i++) {
         let heart = document.getElementById("heart" + i);
         if (heart && heart.classList.contains('lost')) {
@@ -44,7 +56,7 @@ function refillHearts() {
 // Funktion um game zu reseten
 function resetGame() {
     Lives = 10;
-    highScore = 0;
+    //highScore = 0;
 
     clearDisplay(); // Leert das Display
     refillHearts(); // Füllt alle Herzen wieder auf
@@ -55,16 +67,10 @@ function resetGame() {
 // Funktion um game zu beenden
 function resetGame1() {
     Lives = 10;
-    highScore = 0;
     
-    // Name ändern und an das Element mit der ID 'name1' anhängen
-    let name1Element = document.getElementById('name1');
-    let newName = firstName; // Setze den neuen Namen hier ein
-    name1Element.textContent = 'Name: ' + newName;
-
-
     clearDisplay(); // Leert das Display
     refillHearts(); // Füllt alle Herzen wieder auf
+    sortContainersByScore();
 }
 
 
@@ -127,17 +133,145 @@ function appendWortToScreen(Wort) {
     }
 }
 
-// Laden des Highscores aus dem Local Storage
-function loadHighScore() {
-    return parseInt(localStorage.getItem('highScore')) || 0;
+let highScores = [];
+
+function HighScoreSet(highScore) {
+    let highScoreCount = Names.length - 1;
+    highScoreCount++; // Inkrementiere den Zähler
+    console.log("High Score Count: " + highScoreCount)
+
+    // Fügen Sie den neuen Highscore zur Liste hinzu
+    highScores.push(highScore);
+    highScores.sort((a, b) => b - a); // Sortiere das Array absteigend
+    highScores = highScores.slice(0, Names.length); // Kürze das Array auf die Länge von Names
+    console.log(highScores)
+
+    if (highScoreCount === 1) {
+        document.getElementById("score1").innerHTML = `High Score: ${highScores[0]}`;
+    } 
+    else if (highScoreCount === 2) {
+        document.getElementById("score2").innerHTML = `High Score: ${highScores[1]}`;
+    } 
+    else {
+        document.getElementById("score3").innerHTML = `High Score: ${highScores[2]}`;
+    }
 }
 
-// Speichern des Highscores im Local Storage
-function saveHighScore(score) {
-    localStorage.setItem('highScore', score);
+
+function sortContainersByScore() {
+    // Array mit den IDs der Container in der gewünschten Reihenfolge
+    const containerIds = ["cont1", "cont2", "cont3"];
+
+    // Erstellen eines Arrays von Objekten, das die Container-IDs und ihre entsprechenden Punktzahlen enthält
+    const containerScores = containerIds.map(id => {
+        const scoreElement = document.getElementById("score" + id.substring(4)); // Die ID des Punktzahl-Elements
+        const score = parseInt(scoreElement.textContent.split(":")[1].trim()); // Die Punktzahl extrahieren und in eine Zahl umwandeln
+        return { id, score };
+    });
+
+    // Sortieren des Arrays nach den Punktzahlen in absteigender Reihenfolge
+    containerScores.sort((a, b) => b.score - a.score);
+
+    // Aktualisieren der Reihenfolge der Container im DOM entsprechend der sortierten Reihenfolge
+    containerScores.forEach((container, index) => {
+        const containerElement = document.getElementById(container.id);
+        const textContainer = document.querySelector('.textContainer');
+        textContainer.appendChild(containerElement); // Verschieben des Containers ans Ende der .textContainer
+    });
 }
 
 
-function updateHighScoreDisplay(score) {
-    document.getElementById("score1").innerHTML = `High Score: ${score}`;
+async function fetchData() {
+
+    try{
+
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+
+        if(!response.ok) {
+            throw new Error("konnte nicht fetch");
+        }
+
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("cardImagesContainer");
+
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block"
+    }
+    catch(error){
+        console.log('Fehler beim Abrufen der Pokémondaten');
+    }
 }
+
+async function fetchData1 (){
+    try{
+
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/charmander")
+
+        if(!response.ok) {
+            throw new Error("konnte nicht fetch");
+        }
+
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("Image3");
+
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block"
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function fetchData2 (){
+    try{
+
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/charmeleon")
+
+        if(!response.ok) {
+            throw new Error("konnte nicht fetch");
+        }
+
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("Image2");
+
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block"
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function fetchData3 (){
+    try{
+
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/charizard")
+
+        if(!response.ok) {
+            throw new Error("konnte nicht fetch");
+        }
+
+        const data = await response.json();
+        const pokemonSprite = data.sprites.front_default;
+        const imgElement = document.getElementById("Image1");
+
+        imgElement.src = pokemonSprite;
+        imgElement.style.display = "block"
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+// Funktion, die überprüft, ob der Button true zurückgibt
+function buttonClicked() {
+    if (document.getElementById('closeButton').click === true) { 
+        return true; // Beispiel: Gib true zurück, wenn der Button geklickt wurde
+    } 
+    else {
+        return false; // Beispiel: Gib false zurück, wenn der Button nicht geklickt wurde
+    }
+};
