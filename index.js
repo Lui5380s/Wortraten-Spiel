@@ -16,74 +16,62 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('endSequenz').style.display = 'none';
 
     let nameCount = 0; // Zählvariable für die Anzahl der erstellten Namen
-    var button = false;
 
     var nameField = document.getElementById('nameField');
     var anzeigeBuchstaben = document.querySelector('.anzeigeNamen');
-    var button = document.getElementById("closeButton");
-    var buttonClicked = false; // Initialer Zustand des Buttons: nicht geklickt
 
-        // Füge einen Event-Listener für den Button hinzu
-    button.addEventListener("click", function() {
-        // Setze den Zustand von buttonClicked auf true, wenn der Button geklickt wurde
-            buttonClicked = true;
-            console.log("Button wurde geklickt.");
-            let name = nameField.value.trim(); // Hole den eingegebenen Namen
-            Names.push(name); // Füge den Namen zur Liste hinzu
-            nameCount++; // Erhöhe die Anzahl der Namen um eins
-            // Aktualisiere die Anzeige im ".anzeigeNamen" Element
-            anzeigeBuchstaben.textContent = name;
-            if (nameCount === 1) {
-                document.getElementById("name1").innerHTML = `Name: ${Names[0]}`;
-            } else if (nameCount === 2) {
-                document.getElementById("name2").innerHTML = `Name: ${Names[1]}`;
-            } else {
-                document.getElementById("name3").innerHTML = `Name: ${Names[2]}`;
-            }
-            console.log(Names);    
-    });
+    // Start-Button im Anleitungsfenster: Namen übernehmen und direkt das Spiel starten
+    function starteSpiel() {
+        let name = nameField.value.trim(); // Hole den eingegebenen Namen
 
-    // Aufrufen des Wortes nachdem der Start button gedrückt wurde oder das Wort erraten wurde und input in Disyplay setzen
-    document.getElementById('startButton').addEventListener('click', function () {
+        // Ohne Namen geht es nicht los – Eingabefeld rot markieren
+        if (name === "") {
+            nameField.classList.add('fehlt');
+            nameField.focus();
+            return;
+        }
+        nameField.classList.remove('fehlt');
+
+        Names.push(name); // Füge den Namen zur Liste hinzu
+        nameCount++; // Erhöhe die Anzahl der Namen um eins
+        // Aktualisiere die Anzeige im ".anzeigeNamen" Element
+        anzeigeBuchstaben.textContent = name;
+        if (nameCount === 1) {
+            document.getElementById("name1").innerHTML = `Name: ${Names[0]}`;
+        } else if (nameCount === 2) {
+            document.getElementById("name2").innerHTML = `Name: ${Names[1]}`;
+        } else {
+            document.getElementById("name3").innerHTML = `Name: ${Names[2]}`;
+        }
+        console.log(Names);
+
+        document.querySelector('.overlay').style.display = 'none';
+
         let audio = new Audio ('sounds/mixkit-player-select-notification-2037.mp3');
         audio.play()
-        Wort = zufälligesWort();
-        console.log(Wort);
-        
-        Lives = 10; 
+
+        Lives = 10;
         highScore = 0;
 
-        console.log("Leben: " + Lives)
-        console.log("HighScore: " + highScore)
-        
-        // Schleife zum Erstellen der input-Elemente für jeden Buchstaben des zufälligen Wortes
-        for (let i = 0; i < Wort.length; i++) {
-            // Neues input-Element erstellen
-            let inputElement = document.createElement("input");
+        // Zufälliges Wort wählen und als verdeckte Felder anzeigen
+        document.querySelector('.anzeige').innerHTML = '';
+        Wort = zufälligesWort();
+        console.log(Wort);
+        appendWortToScreen(Wort);
+    }
 
-            // Attribute zuweisen
-            inputElement.setAttribute("type", "password"); // Password um die Eingabe von Buchstaben zu verbergen
-            inputElement.setAttribute("id", "wordInput" + i); // ID anpassen, um eindeutige IDs zu erhalten
-            inputElement.setAttribute("class", "word");
-            inputElement.setAttribute("disabled", "true");
-            inputElement.value = Wort[i]; // Buchstabe als Wert einfügen
+    document.getElementById('startButton').addEventListener('click', starteSpiel);
 
-            // Stileigenschaften zuweisen
-            inputElement.style.boxShadow = "0 8px 6px 6px #000";
-            inputElement.style.borderRadius = "5px";
-            inputElement.style.border = "none";
-            inputElement.style.backgroundColor = "white";
-            inputElement.style.height = "40px";
-            inputElement.style.width = "30px";
-            inputElement.style.marginLeft = "0.5rem";
-            inputElement.style.marginRight = "0.5rem";
-            inputElement.style.fontFamily = "'Honk'";
-            inputElement.style.textAlign = "center";
-            inputElement.style.fontSize = "35px";
+    // Rote Markierung verschwindet, sobald ein Name getippt wird
+    nameField.addEventListener('input', function() {
+        nameField.classList.remove('fehlt');
+    });
 
-            // Element zur Anzeige hinzufügen
-            document.querySelector('.anzeige').appendChild(inputElement);
-        } 
+    // Enter im Namensfeld startet ebenfalls das Spiel
+    nameField.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            starteSpiel();
+        }
     });
     
 

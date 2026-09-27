@@ -79,6 +79,12 @@ h2 {
     font-size: larger;
 }
 
+/* Kein Name eingegeben */
+.nameField.fehlt {
+    box-shadow: 0 0 0 3px red;
+    border-radius: 5px;
+}
+
 .popup button {
     margin-top: 10px;
     width: 100px;
@@ -109,13 +115,25 @@ h2 {
     color: black;
 }
 
+/* Seitenspalten links und rechts neben dem Spielfeld */
+.seitenSpalte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.seitenSpalte + .gameArea,
+.gameArea + .seitenSpalte {
+    margin-left: 50px;
+}
+
 /* Game Area in der Mitte */
 .gameArea {
-    height: 600px;
+    padding-bottom: 30px;
     width: 500px;
     border: solid black 1px;
     border-radius: 10px;
-    margin-left: 50px; 
     box-shadow: 0 8px 6px 6px #000;
     background-color: white;
 }
@@ -146,17 +164,23 @@ h2 {
 }
 
 .anzeigeNamen {
+    box-sizing: border-box;
     width: 300px;
-    height: 50px; 
+    height: 60px; 
     border: solid #070707c6 5px;
     box-shadow: 0 4px 4px 4px #000;
     border-radius: 15px;
-    margin-left: 5.5rem;
-    margin-top: 2rem;
+    background-color: white;
     font-family: 'Honk';
     text-align: center;
-    justify-content: center;
     font-size: 40px;
+    line-height: 50px;
+    overflow: hidden;
+}
+
+/* Vor dem Spielstart unsichtbar, Platz bleibt aber reserviert */
+.anzeigeNamen:empty {
+    visibility: hidden;
 }
 
 .input {
@@ -167,7 +191,7 @@ h2 {
     box-shadow: 0 4px 4px 4px #000;
     border-radius: 15px;
     margin-left: 1.2rem;
-    margin-top: 1.5rem;
+    margin-top: 3rem;
     text-align: center;
     justify-content: center;
     font-size: 40px;
@@ -236,31 +260,6 @@ h2 {
     margin-left: 20px; /* Abstand zwischen Namen und Punkten */
 }
 
-/* Start Button */
-.startButton {
-    border: solid black 5px;
-    border-radius: 10px;
-    display: flex;
-    box-shadow: 0 4px 8px 6px #000; 
-    justify-content: center;
-    width: 130px;
-    height: 60px;
-    background-color: white;
-    font-family: "Honk";
-    font-size: 40px;
-    margin-left: 10rem;
-    margin-bottom: -7rem;
-    transition: transform 0.4s ease;
-    position: relative;
-    z-index: 1; /* Liegt über dem Container, sonst ist die obere Hälfte nicht klickbar */
-}
-
-.startButton:hover {
-    box-shadow: 0 4px 6px 6px rgb(22, 223, 230);
-    cursor: pointer;
-    transform: scale(1.1);
-}
-
 /* Progress Area rechts */
 .progressArea {
     opacity: 0.95;
@@ -268,7 +267,6 @@ h2 {
     width: 350px;
     border: solid rgb(0, 0, 0) 1px; 
     border-radius: 10px;
-    margin-left: 50px; 
     box-shadow: 0 8px 6px 6px #000;
     background-color: white;
 }
@@ -328,14 +326,12 @@ h2 {
     transform: scale(1.1);
 }
 
-/* Hinweis-Button im Spielfeld */
+/* Hinweis-Button über dem Fortschritt */
 .hinweisButton {
-    display: block;
-    margin: 1.5rem auto 0;
     border: solid #000000c6 5px;
     box-shadow: 0 4px 4px 4px #000;
     border-radius: 15px;
-    height: 50px;
+    height: 60px;
     padding: 0 20px;
     background-color: white;
     font-family: "Honk";

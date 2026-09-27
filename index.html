@@ -20,15 +20,13 @@
     <!-- Überschrift der Website -->
     <h1 class="header">Guess the Word</h1>
 
-    <button id="startButton" class="startButton">Start!</button>
-
     <!-- Popup Overlay -->
     <div id="overlay" class="overlay">
         <div class="popup">
             <h2>Anleitung</h2>
             <p>Willkommen beim "Guess the Word" Spiel! Das Spiel besteht darin, ein geheimes Wort zu erraten, indem du Buchstaben eingibst. Der Spielbereich zeigt das zu erratende Wort an, wobei jedes leere Feld einen Buchstaben repräsentiert. Gib deine Vermutungen in den Eingabebereich ein, aber achte darauf, deine Versuche klug zu nutzen, da jede falsche Vermutung ein Herz kostet. Der Highscore-Bereich zeigt eine Liste der Spieler mit den höchsten Punktzahlen. Gib einfach deinen Namen unten ein, klicke dann auf "Start!", um das Spiel zu beginnen. Hinweis: Um auf den ersten Platz zu stehen musst du immer ein Wort mehr erraten, als der jetzige Spitzenreiter.<b> Viel Spaß beim Raten und viel Glück!</b></p>
             <input type="text" placeholder="Name eingeben..." id="nameField" class="nameField">
-            <button onclick="closeOverlay()" id="closeButton">Schließen</button>
+            <button id="startButton">Start!</button>
         </div>
     </div>
 
@@ -53,6 +51,12 @@
 
     <!-- Container für die ganze Spiel-Umgebung -->
     <div class="container">
+
+        <!-- Linke Spalte: Spielername über dem High Score -->
+        <div class="seitenSpalte">
+
+        <!-- Anzeige für den Spielernamen -->
+        <div class="anzeigeNamen"></div>
 
         <!-- highScore am linken Rand -->
         <div class="highScore" id="highScore">
@@ -84,6 +88,7 @@
             </div>
 
         </div>
+        </div>
 
         <!-- gameArea in der Mitte des OnePagers -->
         <div class="gameArea" id="gameArea">
@@ -92,18 +97,18 @@
             <!-- Display Anzeige für Buchstaben -->
             <div class="anzeige"></div>
 
-            <!-- Anzeige für den Spielernamen -->
-            <div class="anzeigeNamen"></div>
-
-            <!-- Button um den Hinweis erneut anzuzeigen -->
-            <button class="hinweisButton" id="hinweisButton" disabled>💡 Hinweis</button>
-
             <!-- Input Feld für den User um Buchstaben einzugeben -->
             <div>
                 <input class="input" placeholder="Enter a letter..." maxlength="1" id="input">
             </div>
         </div>
     
+        <!-- Rechte Spalte: Hinweis-Button über dem Fortschritt -->
+        <div class="seitenSpalte">
+
+        <!-- Button um den Hinweis erneut anzuzeigen -->
+        <button class="hinweisButton" id="hinweisButton" disabled>💡 Hinweis</button>
+
         <!-- prograssArea am rechte  Rand  -->
         <div class="progressArea" id="progressArea">
             <h2>Progress</h2>
@@ -127,6 +132,7 @@
             <!-- Reset Buttun um das Spiel neu zu Starten -->
             <button class="resetButton" id="resetButton">Reset</button>
 
+        </div>
         </div>
     </div>
     

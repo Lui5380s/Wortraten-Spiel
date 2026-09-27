@@ -5,16 +5,6 @@ window.onload = function() {
     document.querySelector('.overlay').style.display = 'flex';
 };
 
-// Funktion, um das Overlay zu schließen, wenn ein Name eingegeben wurde
-function closeOverlay() {
-    var name = document.getElementById('nameField').value;
-    if (name !== "") {
-        document.querySelector('.overlay').style.display = 'none';
-    } else {
-        alert("Bitte geben Sie einen Namen ein.");
-    }
-}
-
 function closeEnd (){
     document.querySelector('.endSequenz').style.display = 'none';
     resetGame();
@@ -271,13 +261,3 @@ async function fetchData3 (){
         console.log(error);
     }
 }
-
-// Funktion, die überprüft, ob der Button true zurückgibt
-function buttonClicked() {
-    if (document.getElementById('closeButton').click === true) { 
-        return true; // Beispiel: Gib true zurück, wenn der Button geklickt wurde
-    } 
-    else {
-        return false; // Beispiel: Gib false zurück, wenn der Button nicht geklickt wurde
-    }
-};
